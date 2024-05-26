@@ -1,0 +1,19 @@
+.recentlyChattedUser{
+    /*background-color: #FF2E2E;*/
+    /*width: 300px;*/
+    height: 100vh;
+    /*max-width: 300px;*/
+    flex: 0 0 90%;
+    border: 1px  ;
+    padding-left: 10px;
+
+
+
+
+}
+.chatCont{
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    max-width: 30%;
+}

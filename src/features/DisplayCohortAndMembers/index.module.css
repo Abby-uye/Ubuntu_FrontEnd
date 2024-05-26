@@ -1,0 +1,33 @@
+.cohortList{
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.memberList{
+    margin-top: 10px;
+    padding-left: 20px;
+}
+.memberItem{
+    margin: 5px 0;
+}
+.cohortName{
+    font-weight: bold;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.cohortName:hover {
+    color: #0056b3;
+}
+.cohortState{
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,24 @@
+.cohortContainer{
+    margin-bottom: 20px;
+}
+
+.cohortButton{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.cohortButton:hover{
+    background-color: #0056b3;
+}
+
+.cohortInput,.cohortButton,.cohortSelect{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}

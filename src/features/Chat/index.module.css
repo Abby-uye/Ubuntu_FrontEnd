@@ -1,0 +1,18 @@
+.messageCont{
+    max-width: 800px;
+    margin: 0 auto;
+    width: 800px;
+    padding: 20px;
+    border: 1px solid #FF2E2E;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+}
+.mainCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+
+
+}
