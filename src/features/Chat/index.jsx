@@ -3,12 +3,10 @@ import style from "./index.module.css"
 import ChatHistory from "../ChatHistory";
 import ChatInput from "../ChatInput";
 import RecentlyChattedUser from "../RecentlyChattedUser";
-import CohortState from "../CohortState";
-import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
+
 
 
 const Chat = ()=>{
-
     const [messages,setMessages] = useState([]);
 
     const handleSendMessage = (message) => {
@@ -18,6 +16,7 @@ const Chat = ()=>{
     const receiveMessage = (message) => {
         setMessages(prevMessages => [...prevMessages, { text: message, sender: 'Alice', type: 'received' }]);
     };
+
     return(
         <div className={style.mainCont}>
             <RecentlyChattedUser/>
