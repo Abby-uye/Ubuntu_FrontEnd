@@ -8,8 +8,8 @@ import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
 import AllCohorts from "../AllCohorts";
 
 
-const Chat = ()=>{
 
+const Chat = ()=>{
     const [messages,setMessages] = useState([]);
 
     const handleSendMessage = (message) => {
@@ -19,6 +19,7 @@ const Chat = ()=>{
     const receiveMessage = (message) => {
         setMessages(prevMessages => [...prevMessages, { text: message, sender: 'Alice', type: 'received' }]);
     };
+
     return(
         <div className={style.mainCont}>
 

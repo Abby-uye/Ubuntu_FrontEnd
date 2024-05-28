@@ -1,0 +1,23 @@
+.image_div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: lightcoral solid;
+    width: 25%;
+}
+
+.image_div > div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap:25px;
+}
+
+.image_div > div > h4{
+    margin: 0;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+}
