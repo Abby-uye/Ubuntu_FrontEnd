@@ -1,0 +1,79 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    color:#000000;
+    /*background-color: #fc6329;*/
+
+
+}
+.lowerPart{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.welcome{
+    margin: 0;
+    font-Weight:800;
+    font-Size: 40px;
+
+}
+.login{
+    margin: 0;
+    font-Weight:600;
+    font-Size: 20px;
+
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 83vh;
+    background-color: white;
+    text-align: center;
+    padding-top: 150px;
+}
+.formInfo{
+    display: flex;
+    flex-direction: column;
+    padding-left: 90px;
+    padding-top: 30px;
+}
+.signup{
+    display: flex;
+    justify-content:center;
+    gap:150px
+}
+.loginInfo{
+    border: 2px solid #C4C4C4;
+    border-radius: 9px;
+    width: 70%;
+    margin: 6px;
+    height: 6vh;
+    /*color: #000000;*/
+    padding-left: 10px;
+
+}
+.lowerPartText{
+    color: #000000;
+    text-decoration: none;
+
+
+}
+.button {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.form{
+    /*background-color: #aedcfa;*/
+    /*background-color: #CDDC39;*/
+    /*background-color: #CFD8DC;*/
+    /*background-color: #212121;*/
+    /*background-color: #FFF9C4;*/
+    /*background-color: #FF6F61;*/
+    background-color: #671BC7;
+    /*background-color: peachpuff;*/
+
+}
