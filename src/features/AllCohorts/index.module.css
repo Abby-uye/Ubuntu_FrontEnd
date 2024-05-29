@@ -1,13 +1,11 @@
 .faTimes{
     color: black;
-    /*margin-top: 30px;*/
     width: 25px;
     height: 25px;
 }
 
 .faBars{
     color: black;
-    /*margin-top: 30px;*/
     width: 25px;
     height: 25px;
 }
@@ -43,4 +41,23 @@
 
 .menu p:hover {
     background-color: #f5f5f5;
+}
+/* App.module.css */
+
+.appContainer {
+    padding: 20px;
+}
+
+.clearButton {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.clearButton:hover {
+    background-color: #d32f2f;
 }

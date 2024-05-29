@@ -3,6 +3,9 @@ import style from "./index.module.css"
 import ChatHistory from "../ChatHistory";
 import ChatInput from "../ChatInput";
 import RecentlyChattedUser from "../RecentlyChattedUser";
+import CohortState from "../CohortState";
+import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
+import AllCohorts from "../AllCohorts";
 
 
 
@@ -18,10 +21,14 @@ const Chat = ()=>{
     };
 
     return(
+
+
         <div className={style.mainCont}>
-            <RecentlyChattedUser/>
+
             {/*<CohortState/>*/}
             {/*<DisplayCohortAndMembers/>*/}
+            <AllCohorts/>
+            {/*<RecentlyChattedUser/>*/}
         <div className={style.messageCont}>
             <ChatHistory messages={messages}/>
             <ChatInput onSend={handleSendMessage}/>

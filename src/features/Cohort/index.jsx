@@ -1,40 +1,29 @@
-import styles from "./index.module.css"
-import {useEffect, useState} from "react";
-const Cohort = ({ setCohorts})=>{
 
+import { useEffect, useState } from "react";
+import styles from "./index.module.css";
+import AddMember from "../AddMemberToCohort"; // Import the AddMember component
+import UserProfile from "../CreateProfile"; // Import the UserProfile component
+
+const Cohort = ({ setCohorts }) => {
     const [newCohortName, setNewCohortName] = useState('');
-    const [newMember, setNewMember] = useState('');
     const [selectedCohort, setSelectedCohort] = useState('');
     const [cohorts, updateCohorts] = useState({});
-
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [newCohortNumber, setNewCohortNumber] = useState("")
 
     useEffect(() => {
         const savedCohorts = JSON.parse(localStorage.getItem('cohorts')) || {};
         updateCohorts(savedCohorts);
         setCohorts(savedCohorts);
     }, [setCohorts]);
-    const handleInputChange = (event) => {
-        setNewMember(event.target.value);
+
+    const handleNewNameCohortChange = (event) => {
+        setNewCohortNumber(event.target.value);
     };
 
-
-    const handleAddMember = () => {
-        if (newMember.trim() && selectedCohort) {
-            const updatedCohorts = {
-                ...cohorts,
-                [selectedCohort]: [...cohorts[selectedCohort], newMember.trim()],
-            };
-            updateCohorts(updatedCohorts);
-            setCohorts(updatedCohorts);
-            localStorage.setItem('cohorts', JSON.stringify(updatedCohorts));
-            setNewMember('');
-        }
-    };
-
-    const handleNewCohortChange = (event) => {
+    const handleNewNumberCohortChange = (event) => {
         setNewCohortName(event.target.value);
     };
-
 
     const handleCreateCohort = () => {
         if (newCohortName.trim() && !cohorts[newCohortName.trim()]) {
@@ -51,41 +40,76 @@ const Cohort = ({ setCohorts})=>{
         }
     };
 
+    const handleMemberClick = (member) => {
+        setSelectedUser(member);
+    };
 
+    const handleCloseProfile = () => {
+        setSelectedUser(null);
+    };
 
     return (
         <div className={styles.cohortContainer}>
-            <input
-                type="text"
-                value={newCohortName}
-                onChange={handleNewCohortChange}
-                placeholder="Enter new cohort name"
-                className="cohortInput"
-            />
-            <button onClick={handleCreateCohort}  className={styles.cohortButton}>Create Cohort</button>
+            {!selectedCohort && (
+                <>
+                    <input
+                        type="text"
+                        value={newCohortName}
+                        onChange={handleNewNameCohortChange}
+                        placeholder="Enter new cohort name"
+                        className={styles.cohortInput}
+                    />
+                    <input
+                        type="text"
+                        value={newCohortNumber}
+                        onChange={handleNewNumberCohortChange}
+                        placeholder="Enter new cohort number"
+                        className={styles.cohortInput}
+                    />
+                    <button onClick={handleCreateCohort} className={styles.cohortButton}>
+                        Create Cohort
+                    </button>
+                </>
+            )}
 
-            <br /><br />
+            <br/><br/>
 
-            <input
-                type="text"
-                value={newMember}
-                onChange={handleInputChange}
-                placeholder="Enter member name"
-                className={styles.cohortInput}
-            />
-            <select value={selectedCohort} onChange={(e) => setSelectedCohort(e.target.value)}
-                    className={styles.cohortSelect}
-            >
-                <option value="">Select a cohort</option>
-                {Object.keys(cohorts).map(cohort => (
-                    <option key={cohort} value={cohort}>
-                        {cohort}
-                    </option>
-                ))}
-            </select>
-            <button onClick={handleAddMember} className={styles.cohortButton}>Add Member</button>
+            <div>
+                <select onChange={(e) => setSelectedCohort(e.target.value)} disabled={!!selectedCohort}>
+                    <option value="">Select Cohort</option>
+                    {Object.keys(cohorts).map((cohort) => (
+                        <option key={cohort} value={cohort}>
+                            {cohort}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            {selectedCohort && (
+                <div>
+                    <h3>{selectedCohort}</h3> {/* Display the cohort name as static text */}
+                    <ul className={styles.membersList}>
+                        {cohorts[selectedCohort].map((member, index) => (
+                            <li
+                                className={styles.memberItem}
+                                key={index}
+                                onClick={() => handleMemberClick(member)}
+                            >
+                                {member.name}
+                            </li>
+                        ))}
+                    </ul>
+                    <AddMember
+                        cohorts={cohorts}
+                        updateCohorts={updateCohorts}
+                        selectedCohort={selectedCohort}
+                    />
+                </div>
+            )}
+            {selectedUser && (
+                <UserProfile user={selectedUser} onClose={handleCloseProfile} cohortName={selectedCohort} />
+            )}
         </div>
     );
 };
 
-export default Cohort
+export default Cohort;
