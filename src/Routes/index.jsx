@@ -21,7 +21,7 @@ export const Routes = [
     {
         path:"/post",
         element:<PostModal/>,
-    }
+    },
     {
         path: "/communityManagerPage",
         element: <CommunityManagerPage/>
