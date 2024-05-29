@@ -3,7 +3,6 @@ import CohortState from "../features/CohortState";
 import Home from "../features/Home";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
-import ChatConnection from "../features/ChatConnection";
 
 export const Routes = [
     {
@@ -25,9 +24,5 @@ export const Routes = [
     , {
         path: "/login",
         element: <Login/>
-    }
-    , {
-        path: "/chatConnection",
-        element: <ChatConnection/>
     }
 ]

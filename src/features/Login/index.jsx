@@ -1,5 +1,5 @@
 import style from "./index.module.css"
-import images from "../../asset/login/ourCommunity.jpg"
+import images from "../../asset/login/gifForLogin.gif"
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FilledButton from "../../components/reuseables/FilledButton";
@@ -7,7 +7,6 @@ import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 // import * as Yup from "yup";
-
 
 
 const Login = () => {
@@ -66,22 +65,26 @@ const Login = () => {
 
     return (
         <div className={style.main}>
-            <img src={images} alt={"login"} width={""} height={""}/>
+            <img src={images} alt={"gif"} style={{width: "50%", height: "auto"}}/>
 
             <div className={style.form}>
+                <p className={style.welcome} style={{color: "#671BC7"}}>Welcome !</p>
+                <p className={style.login} style={{color: "#671BC7"}}>Sign in to stay connected with the most <span
+                    style={{display: "block"}}>    prestigious community</span></p>
 
-                <p className={style.welcome}>Welcome !</p>
-                <p className={style.login}>Sign in to stay connected with the most prestigious community</p>
                 <form className={style.formInfo} onSubmit={(e) => handleSubmit(e)}>
-                    <input type={"email"} placeholder={"Email:"} className={style.loginInfo}
+
+                    <input type={"email"} placeholder={"Enter Your Email"} className={style.loginInfo}
                            name={"email"} onChange={handleChange}></input>
-                    <input type={"password"} placeholder={"Password:"} className={style.loginInfo} name={"password"}
+
+                    <input type={"password"} placeholder={"Enter Your Password"} className={style.loginInfo}
+                           name={"password"}
                            onChange={handleChange}></input>
+
                     <div className={style.button}>
-                        <FilledButton textColor={"white"} backgroundColor={"peachpuff"} text={"Login"}/>
+                        <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Login"}/>
                     </div>
                 </form>
-
 
             </div>
             <ToastContainer/>
