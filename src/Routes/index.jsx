@@ -3,23 +3,28 @@ import CohortState from "../features/CohortState";
 import Home from "../features/Home";
 import Modal from "../features/Modal";
 import AddMemberToCohort from "../features/AddMemberToCohort";
+import CommunityManagerPage from "../features/CommunityManagerPage";
+import Login from "../features/Login";
 
-export const Routes =[
+export const Routes = [
     {
-        path:"",
-        element:<Home/>
+        path: "/home",
+        element: <Home/>
     },
     {
-        path:"/chat",
-        element:<Chat/>,
-    },
-
-    {
-        path:"/modal",
-        element:<AddMemberToCohort/>,
+        path: "/chat",
+        element: <Chat/>,
     },
     {
         path:"/community_manager",
         element:<CohortState/>,
     },
+    {
+        path: "/communityManagerPage",
+        element: <CommunityManagerPage/>
+    }
+    , {
+        path: "/login",
+        element: <Login/>
+    }
 ]
