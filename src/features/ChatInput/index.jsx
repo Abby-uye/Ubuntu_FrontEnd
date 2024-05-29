@@ -3,7 +3,7 @@ import styles from "./index.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import SockJS from "sockjs-client";
-import {Stomp} from "@stomp/stompjs";
+import {Client} from "@stomp/stompjs";
 
 const ChatInput = ({onSend})=>{
     const [message, setMessage] = useState('');
@@ -20,7 +20,10 @@ const ChatInput = ({onSend})=>{
                 content:messageInput,
                 recipientId: recipientId,
             }
-            stompClient.send("/app/message", {}, JSON.stringify(chatMessage))
+            stompClient.publish({
+                destination: "/app/message",
+                body: JSON.stringify(chatMessage)
+            })
         }
         setMessage('');
         event.preventDefault();
@@ -37,36 +40,50 @@ const ChatInput = ({onSend})=>{
             onSend(message);
             setMessage('');
         }
-        }
-
-    function OnConnected(frame) {
-        console.log("Connected to ", frame);
-        stompClient.subscribe(`/user/${userId}/queue/message`, onMessageReceived);
-        stompClient.subscribe(`/user/public`, onMessageReceived);
-
-
     }
 
-    function OnError(error) {
-        console.log("Error ", error)
-    }
 
+        
     useEffect(() => {
-        const socket = new SockJS("http://localhost:8080/ws");
-        console.log(socket);
-        const stomp = Stomp.over(socket);
-        console.log(stomp);
-        setStompClient(stomp);
-        stomp.connect({}, OnConnected, OnError);
+        const client = new Client({
+            brokerURL: '/ws',
+            connectHeaders:{
+                login: userId,
+                passcode: "password"
+            },
+            reconnectDelay: 5000,
+            heartbeatIncoming: 4000,
+            heartbeatOutgoing: 4000,
+        });
+        client.onConnect = (frame) => {
+            console.log('Connected: ', frame);
+            client.subscribe(`/user/${userId}/queue/message`, onMessageReceived);
+            client.subscribe(`/user/public`, onMessageReceived);
+        };
+        client.onStompError = (frame) => {
+            console.error('Broker reported error: ', frame.headers['message']);
+            console.error('Additional details: ', frame.body);
+        };
+        client.activate();
+        console.log(client);
+        setStompClient(client);
 
-        return() => {
-            if(stompClient != null){
-                stompClient.disconnect(() => {
-                    console.log('Disconnected')
-                })
+        return () => {
+            if (client) {
+              client.deactivate();
             }
-        }
-    }, [stompClient]);
+        };
+}, []);
+
+// function OnConnected(frame) {
+//     console.log("Connected to ", frame);
+//     stompClient.subscribe(`/user/${userId}/queue/message`, onMessageReceived);
+//     stompClient.subscribe(`/user/public`, onMessageReceived);
+// }
+
+// function OnError(error) {
+//     console.log("Error ", error)
+// }
 
 
 
@@ -79,7 +96,7 @@ const ChatInput = ({onSend})=>{
                 className={styles.input}
                 placeholder="Type a message..."
             />
-            <button onClick={sendMessage} className={styles.buttn}>
+.            <button onClick={sendMessage} className={styles.buttn}>
                 <FontAwesomeIcon icon={faPaperPlane}/>
             </button>
         </div>

@@ -3,9 +3,23 @@ import {FaHome, FaSearch} from "react-icons/fa";
 import {MdOutlinePostAdd} from "react-icons/md";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import {data} from "./data"
+import { useState } from "react";
+import PostModal from "../post/PostModal";
 
 
 const Home = () => {
+    const [openModal, setOpenModal] = useState(false);
+
+
+    const openModalFunction = () => {
+        setOpenModal(true)
+        hidOverFlow()
+    }
+
+    const hidOverFlow = () => {document.body.style.overflow = "hidden";}
+
+    const openOverFlow = () => {document.body.style.overflow = ""}
+
 
     return (
         <div>
@@ -14,7 +28,8 @@ const Home = () => {
                 <div className={style.image_div}>
                     <div style={{paddingTop:"30px"}}>
                         <FaHome style={{fill: "red", fontSize: "25px"}}/>
-                        <h4>Home</h4>
+                        <h4 onMouseEnter={openModalFunction}>Home</h4>
+                        {openModal && <PostModal closeModal={setOpenModal} openFlow={openOverFlow}/>}
                     </div>
                     <div>
                         <MdOutlinePostAdd style={{fill: "red", fontSize: "25px"}}/>

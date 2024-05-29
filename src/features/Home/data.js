@@ -1,4 +1,4 @@
-import community from "../../images/community.webp"
+import community from "../../assests/community.webp"
 export const data = [
     {
         title: "Building A Culture Of Excellence",
