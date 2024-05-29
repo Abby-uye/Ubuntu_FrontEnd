@@ -1,6 +1,8 @@
 import Chat from "../features/Chat";
 import CohortState from "../features/CohortState";
 import Home from "../features/Home";
+import Modal from "../features/Modal";
+import AddMemberToCohort from "../features/AddMemberToCohort";
 
 export const Routes =[
     {
@@ -10,6 +12,11 @@ export const Routes =[
     {
         path:"/chat",
         element:<Chat/>,
+    },
+
+    {
+        path:"/modal",
+        element:<AddMemberToCohort/>,
     },
     {
         path:"/community_manager",

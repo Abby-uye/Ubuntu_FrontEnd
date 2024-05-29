@@ -21,6 +21,8 @@ const Chat = ()=>{
     };
 
     return(
+
+
         <div className={style.mainCont}>
 
             {/*<CohortState/>*/}
