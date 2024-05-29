@@ -1,0 +1,8 @@
+.filledButton{
+    width: 160px;
+    height: 7vh;
+    border: 0;
+    border-radius: 6px;
+    font-size: 23px;
+    font-weight: 400;
+}
