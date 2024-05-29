@@ -10,25 +10,32 @@
     background-color: #FFFCFC ;
 }
 
-.message{
-    max-width: 60%;
+/*.message{*/
+/*    max-width: 60%;*/
+/*    padding: 10px;*/
+/*    border-radius: 8px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+.sentMessage {
+    align-self: flex-end;
+    background-color: pink;
     padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+
 }
 
-/*sentMessage {*/
-/*    align-self: flex-end;*/
-/*    background-color: pink;*/
-/*    padding: 10px;*/
-/*    border-radius: 5px;*/
-/*    margin: 5px 0;*/
-/*}*/
+.receivedMessage {
+    align-self: flex-start;
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
 
-/*.receivedMessage {*/
-/*    align-self: flex-start;*/
-/*    background-color: #FFF;*/
-/*    padding: 10px;*/
-/*    border-radius: 5px;*/
-/*    margin: 5px 0;*/
-/*}*/
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    text-align: right;
+}
