@@ -1,5 +1,5 @@
 import style from "./index.module.css"
-import images from "../../asset/login/gifForLogin.gif"
+import images from "../../assets/login/gifForLogin.gif"
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FilledButton from "../../components/reuseables/FilledButton";
@@ -42,7 +42,7 @@ const Login = () => {
                 email: user.email,
                 password: user.password
             })
-            if (response.data.token) {
+            if (response.message === true) {
                 localStorage.setItem("token", response.data.token)
                 navigate("/home")
             }
@@ -85,6 +85,7 @@ const Login = () => {
                         <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Login"}/>
                     </div>
                 </form>
+
 
             </div>
             <ToastContainer/>

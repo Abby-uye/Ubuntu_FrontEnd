@@ -5,6 +5,7 @@ import Modal from "../features/Modal";
 import AddMemberToCohort from "../features/AddMemberToCohort";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
+import AddCohort from "../features/AddCohort";
 
 export const Routes = [
     {
@@ -26,5 +27,12 @@ export const Routes = [
     , {
         path: "/login",
         element: <Login/>
+    },
+    {
+        path: "/addCohort",
+        element: <AddCohort/>
+    },{
+        path: "/addMember",
+        element: <AddMemberToCohort/>
     }
 ]
