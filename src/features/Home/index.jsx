@@ -62,6 +62,7 @@ const Home = () => {
                         <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Event</h4>
                     </div>
                 </div>
+
                 <div>
                     {/*{data.map(value => {*/}
                     {/*    return (*/}
@@ -89,7 +90,7 @@ const Home = () => {
 
                     <ViewAllPost/>
                 </div>
-
+                <FilledButton textColor={"white"} backgroundColor={"#a6e1ec"} text={"Update"}/>
             </div>
         </div>
         // return (
