@@ -7,7 +7,6 @@ import {data} from "./data"
 import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
 import {useNavigate} from 'react-router-dom';
 import {Link} from "react-router-dom";
-import FilledButton from "../../components/reuseables/FilledButton";
 import ViewAllPost from "./ViewAllPost";
 
 
