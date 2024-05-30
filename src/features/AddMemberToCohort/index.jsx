@@ -291,7 +291,7 @@ const AddMember = () => {
 
     return (
         <div className={styles.addMember}>
-            <button onClick={openModal}>Add students</button>
+            <button onClick={openModal} className={styles.communtityButton}>Add students</button>
             <Modal show={showModal} onClose={closeModal}>
                 <p className={styles.addNative}>Add Natives To Cohort</p>
 

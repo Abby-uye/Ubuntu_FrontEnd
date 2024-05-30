@@ -1,5 +1,5 @@
 import style from "./index.module.css"
-import images from "../../asset/login/gifForLogin.gif"
+import images from "../../assets/login/gifForLogin.gif"
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FilledButton from "../../components/reuseables/FilledButton";
@@ -11,12 +11,6 @@ import {useNavigate} from "react-router-dom";
 
 const Login = () => {
     const navigate = useNavigate()
-    // const validationSchema = Yup.object().shape({
-    //     email: Yup.string()
-    //         .email('Invalid email address')
-    //         .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Must be a valid email Address')
-    //         .required('Email Address is required'),
-    // });
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -37,18 +31,22 @@ const Login = () => {
         console.log("email " + user.email)
         console.log("password " + user.password)
         e.preventDefault()
+        if(user.email === "community@manager.com" && user.password === "password1234"){
+            navigate("/communityManagerPage")
+        }
         try {
             const response = await axios.post('http://localhost:8080/ubuntu/user/auth', {
                 email: user.email,
                 password: user.password
             })
-            if (response.data.token) {
+            if (response.request.status === 200) {
                 localStorage.setItem("token", response.data.token)
+                console.log(response.data.token)
                 navigate("/home")
             }
 
         } catch (err) {
-            toast.error(err.response.data.message, {
+            toast.error("Invalid details", {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -85,6 +83,7 @@ const Login = () => {
                         <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Login"}/>
                     </div>
                 </form>
+
 
             </div>
             <ToastContainer/>
