@@ -6,6 +6,9 @@ import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import {data} from "./data"
 import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
 import {useNavigate} from 'react-router-dom';
+import {Link} from "react-router-dom";
+import FilledButton from "../../components/reuseables/FilledButton";
+import ViewAllPost from "./ViewAllPost";
 
 
 const Home = () => {
@@ -60,29 +63,31 @@ const Home = () => {
                     </div>
                 </div>
                 <div>
-                    {data.map(value => {
-                        return (
-                            <div key={value.title} style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center"
-                            }}>
-                                <div style={{width: "45%"}}>
-                                    <h3>{value.title}</h3>
-                                    <p>{value.description}</p>
-                                </div>
-                                <div style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    width: "65%"
-                                }}>
-                                    <img style={{width: "65%"}} src={value.picture} alt={value.title}/>
-                                </div>
-                            </div>
-                        )
-                    })}
+                    {/*{data.map(value => {*/}
+                    {/*    return (*/}
+                    {/*        <div key={value.title} style={{*/}
+                    {/*            display: "flex",*/}
+                    {/*            flexDirection: "column",*/}
+                    {/*            justifyContent: "center",*/}
+                    {/*            alignItems: "center"*/}
+                    {/*        }}>*/}
+                    {/*            <div style={{width: "45%"}}>*/}
+                    {/*                <h3>{value.title}</h3>*/}
+                    {/*                <p>{value.description}</p>*/}
+                    {/*            </div>*/}
+                    {/*            <div style={{*/}
+                    {/*                display: "flex",*/}
+                    {/*                justifyContent: "center",*/}
+                    {/*                alignItems: "center",*/}
+                    {/*                width: "65%"*/}
+                    {/*            }}>*/}
+                    {/*                <img style={{width: "65%"}} src={value.picture} alt={value.title}/>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    )*/}
+                    {/*})}*/}
+
+                    <ViewAllPost/>
                 </div>
 
             </div>

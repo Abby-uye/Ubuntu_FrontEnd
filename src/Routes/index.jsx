@@ -8,7 +8,7 @@ import AddCohort from "../features/AddCohort";
 
 export const Routes = [
     {
-        path: "/home",
+        path: "",
         element: <Home/>
     },
     {
