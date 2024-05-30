@@ -1,0 +1,18 @@
+.likeAndComment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 30px;
+
+}
+
+.theButton{
+    width: 100px;
+    height: 30px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    font-family: lato, serif;
+    color: whitesmoke;
+    font-weight: bold;
+}

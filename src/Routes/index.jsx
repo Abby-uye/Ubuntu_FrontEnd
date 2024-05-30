@@ -2,14 +2,14 @@ import Chat from "../features/Chat";
 import CohortState from "../features/CohortState";
 import Home from "../features/Home";
 import PostModal from "../features/post/PostModal";
-import Modal from "../features/Modal";
 import AddMemberToCohort from "../features/AddMemberToCohort";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
+import AddCohort from "../features/AddCohort";
 
 export const Routes = [
     {
-        path: "/home",
+        path: "",
         element: <Home/>
     },
     {
@@ -31,5 +31,17 @@ export const Routes = [
     , {
         path: "/login",
         element: <Login/>
+    }
+
+    , {
+        path: "/add_student",
+        element: <AddMemberToCohort/>
+    },
+    {
+        path: "/addCohort",
+        element: <AddCohort/>
+    },{
+        path: "/addMember",
+        element: <AddMemberToCohort/>
     }
 ]

@@ -5,7 +5,7 @@
 //
 //
 // const AddMember = () => {
-//     const [showModal, setShowModal] = useState(false);
+//
 //     const [cohorts, setCohorts] = useState([]);
 //     const [selectedCohort, setSelectedCohort] = useState('');
 //     const [errorData, setErrorData] = useState("");
@@ -187,12 +187,12 @@ import styles from "./index.module.css";
 import axios from "axios";
 
 const AddMember = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [cohorts, setCohorts] = useState([]);
+     const [cohorts, setCohorts] = useState([]);
     const [selectedCohort, setSelectedCohort] = useState('');
     const [errorData, setErrorData] = useState("");
     const [addMemberError, setAddMemberError] = useState("");
     const [forms, setForms] = useState([{ name: '', email: '' }]);
+    const [showModal, setShowModal] = useState(false);
 
     const handleFormChange = (index, event) => {
         const updatedForms = forms.map((form, i) =>
@@ -205,8 +205,16 @@ const AddMember = () => {
         setForms([...forms, { name: '', email: '' }]);
     };
 
+
+
     const handleSubmitAllForms = async (event) => {
         event.preventDefault();
+
+        const isEmptyForm = forms.some(form => form.name.trim() === '' || form.email.trim() === '');
+        if (isEmptyForm) {
+            setAddMemberError("Please fill out all fields in the form.");
+            return;
+        }
 
 
         const dataToSubmit = forms.map(form => ({
@@ -235,7 +243,6 @@ const AddMember = () => {
                 setAddMemberError("");
                 setForms([{ name: '', email: '' }]);
                 setSelectedCohort('');
-                setShowModal(false);
             } else {
                 setAddMemberError(data.err || "Failed to add members");
             }
@@ -271,7 +278,11 @@ const AddMember = () => {
     }, []);
 
     const openModal = () => setShowModal(true);
-    const closeModal = () => setShowModal(false);
+    const closeModal = () =>{
+        setAddMemberError('');
+        setShowModal(false);
+        setForms([{ name: '', email: '' }]);
+    }
 
     const handleChange = (event) => {
         setSelectedCohort(event.target.value);
@@ -280,11 +291,9 @@ const AddMember = () => {
 
     return (
         <div className={styles.addMember}>
-            <h1>React Modal Example</h1>
-            <button onClick={openModal}>Open Modal</button>
-
+            <button onClick={openModal} className={styles.communtityButton}>Add students</button>
             <Modal show={showModal} onClose={closeModal}>
-                <p>Add Natives To Cohort</p>
+                <p className={styles.addNative}>Add Natives To Cohort</p>
 
                 <div className={styles.inModal}>
                     {errorData && <p className={styles.error}>{errorData}</p>}
@@ -297,6 +306,7 @@ const AddMember = () => {
                     ))}
                     </select>
 
+                    <div className={styles.theForm}>
                     <form onSubmit={handleSubmitAllForms}>
                         {forms.map((form, index) => (
                             <div key={index} className={styles.formItems}>
@@ -318,9 +328,12 @@ const AddMember = () => {
                                 />
                             </div>
                         ))}
+                        <div className={styles.btns}>
                         <button type="button" onClick={addForm} className={styles.theButton}>+</button>
                         <button type="submit" className={styles.theButton}>Done</button>
-                    </form>
+                        </div>
+                        </form>
+                    </div>
                     {addMemberError && <p className={styles.error}>{addMemberError}</p>}
                 </div>
             </Modal>

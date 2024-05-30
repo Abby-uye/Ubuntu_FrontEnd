@@ -3,10 +3,11 @@
     flex-direction: column;
     gap: 30px;
     /*border: lightcoral solid;*/
-    width: 25%;
+    width: 35%;
     border-radius: 5px;
     background-color: #a6e1ec;
     padding: 25px 20px;
+    font-size: 25px;
 
 }
 
@@ -37,6 +38,8 @@
 }
 .heading{
   display: flex;
+    background-color: #a6e1ec;
+
 
 }
 .searchMain{
@@ -53,7 +56,7 @@
     width: 80%;
     background-color: #a6e1ec;
     color: #671BC7;
-    border: 1px;
+    border: 1px solid #671BC7;
 }
 .chatLink{
     outline: none;
@@ -61,4 +64,12 @@
     font-size: 20px;
     font-weight: 900;
     color: #671BC7;
+}
+.dummyImage{
+    width: 60px;
+    height: 7vh;
+    background-color: #a6e1ec;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border-radius: 10vh;
 }

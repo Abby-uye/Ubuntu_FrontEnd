@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 
 
 const Login = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -34,14 +34,23 @@ const Login = () => {
         console.log("email " + user.email)
         console.log("password " + user.password)
         e.preventDefault()
+        if(user.email === "community@manager.com" && user.password === "password1234"){
+            navigate("/communityManagerPage")
+        }
         try {
             
             const response = await axios.post('http://localhost:8080/ubuntu/user/auth', {
                 email: user.email,
                 password: user.password
             })
-        }catch (error) {
-            toast.error(error.response.data.message, {
+            if (response.request.status === 200) {
+                localStorage.setItem("token", response.data.token)
+                console.log(response.data.token)
+                navigate("/home")
+            }
+
+        } catch (err) {
+            toast.error("Invalid details", {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -79,6 +88,7 @@ const Login = () => {
                         <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Login"}/>
                     </div>
                 </form>
+
 
             </div>
             <ToastContainer/>

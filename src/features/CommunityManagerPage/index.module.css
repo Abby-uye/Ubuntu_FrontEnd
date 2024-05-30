@@ -1,7 +1,7 @@
 .main {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 40px;
 
 }
 
@@ -13,6 +13,7 @@
     font-size: 20px;
     font-weight: 400;
     border-radius: 4px;
+    /*gap: 10px;*/
 
 }
 
@@ -25,10 +26,10 @@
 }
 
 .community {
-    width: 14%;
+    width: 25%;
     background-color: #a6e1ec;
     color: #671BC7;
-    height: 6vh;
+    height: 8vh;
     font-size: 20px;
 }
 
@@ -51,14 +52,14 @@
 }
 
 .addCohortImage {
-    width: 30px;
-    height: 4vh;
+    width: 40px;
+    height: 5vh;
     font-weight: 1000;
 }
 
 .addStudents {
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
 .addStudentsImage {
@@ -68,7 +69,7 @@
 
 .removeStudent {
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 .removeStudentImage{
     width: 30px;
@@ -98,4 +99,17 @@
 .deleteEventImage{
     width: 28px;
     height: 4vh;
+}
+.communtityButton{
+    width: 160px;
+    height: 7vh;
+    border: 0;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 400;
+    /*color: white;*/
+    background-color: #671BC7;
+    text-decoration: none;
+    border: none;
+
 }
