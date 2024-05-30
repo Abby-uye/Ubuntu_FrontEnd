@@ -1,10 +1,10 @@
 import style from "./index.module.css"
-import addCohort from "../../asset/communityManger/addCohortIcon1-removebg-1.png"
-import addStudents from "../../asset/communityManger/addStudentIcon-removebg-preview.png"
-import removeStudent from "../../asset/communityManger/removeAStudentIcon-removebg-preview.png"
-import addEvent from "../../asset/communityManger/addEventIcon-removebg-preview.png"
-import updateEvent from "../../asset/communityManger/updateImageIcon-removebg-preview.png"
-import deleteEvent from "../../asset/communityManger/deleteEventIcon-removebg-preview.png"
+import addCohort from "../../assets/communityManger/addCohortIcon1-removebg-1.png"
+import addStudents from "../../assets/communityManger/addStudentIcon-removebg-preview.png"
+import removeStudent from "../../assets/communityManger/removeAStudentIcon-removebg-preview.png"
+import addEvent from "../../assets/communityManger/addEventIcon-removebg-preview.png"
+import updateEvent from "../../assets/communityManger/updateImageIcon-removebg-preview.png"
+import deleteEvent from "../../assets/communityManger/deleteEventIcon-removebg-preview.png"
 
 const CommunityManagerPage = () => {
     function changeBackgroundOnOver  (e){

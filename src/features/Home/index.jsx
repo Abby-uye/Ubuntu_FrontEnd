@@ -3,14 +3,21 @@ import {FaHome, FaSearch} from "react-icons/fa";
 import {MdOutlinePostAdd} from "react-icons/md";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import {data} from "./data"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostModal from "../post/PostModal";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import FilledButton from "../../components/reuseables/FilledButton";
 
 
 const Home = () => {
+    const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
+
+    useEffect(() => {
+        if(localStorage.getItem("token") === null){
+            navigate("/login")
+        }
+    }, []);
 
 
     const openModalFunction = () => {
@@ -20,14 +27,13 @@ const Home = () => {
 
     const hidOverFlow = () => {document.body.style.overflow = "hidden";}
 
-    const openOverFlow = () => {document.body.style.overflow = ""}
+    const openOverFlow = () => {document.body.style.overflow = "";}
 
     function changeBackgroundOnOver  (e){
         e.target.style.backgroundColor = "#007bff"
     }
-    function changeBackgroundOutOver  (e){
-        e.target.style.backgroundColor = "#a6e1ec"
-    }
+
+    function changeBackgroundOutOver(e) {e.target.style.backgroundColor = "#a6e1ec"}
 
     return (
         <div className={style.mainboard}>
@@ -44,7 +50,8 @@ const Home = () => {
                 <div className={style.image_div}>
                     <div style={{paddingTop: "30px"}}>
                         <FaHome style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseEnter={openModalFunction} onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Home</h4>
+                        <h4 onMouseEnter={openModalFunction} onMouseOver={changeBackgroundOnOver}
+                         onMouseLeave={changeBackgroundOutOver}>Home</h4>
                         {openModal && <PostModal closeModal={setOpenModal} openFlow={openOverFlow}/>}
                     </div>
                     <div>
@@ -90,60 +97,6 @@ const Home = () => {
 
             </div>
         </div>
-        // return (
-        //     <div>
-        //         <div style={{backgroundColor: "red", width: "100%", height: "50px"}}></div>
-        //         <div className={style.main}>
-        //             <div className={style.image_div}>
-        //                 <div style={{paddingTop: "30px"}}>
-        //                     <FaHome style={{fill: "red", fontSize: "25px"}}/>
-        //                     <h4>Home</h4>
-        //                 </div>
-        //                 <div>
-        //                     <MdOutlinePostAdd style={{fill: "red", fontSize: "25px"}}/>
-        //                     <h4>Post</h4>
-        //                 </div>
-        //                 <div>
-        //                     <FaSearch style={{fill: "red", fontSize: "25px"}}/>
-        //                     <h4>Search</h4>
-        //                 </div>
-        //                 <div>
-        //                     <IoIosChatboxes style={{fill: "red", fontSize: "25px"}}/>
-        //                     <Link to={"/chatConnection"}>Home</Link>
-        //
-        //                 </div>
-        //                 <div>
-        //                     <IoIosNotifications style={{fill: "red", fontSize: "25px"}}/>
-        //                     <h4>Notification</h4>
-        //                 </div>
-        //             </div>
-        //             <div>
-        //                 {data.map(value => {
-        //                     return (
-        //                         <div key={value.title} style={{
-        //                             display: "flex",
-        //                             flexDirection: "column",
-        //                             justifyContent: "center",
-        //                             alignItems: "center"
-        //                         }}>
-        //                             <div style={{width: "45%"}}>
-        //                                 <h3>{value.title}</h3>
-        //                                 <p>{value.description}</p>
-        //                             </div>
-        //                             <div style={{
-        //                                 display: "flex",
-        //                                 justifyContent: "center",
-        //                                 alignItems: "center",
-        //                                 width: "65%"
-        //                             }}>
-        //                                 <img style={{width: "65%"}} src={value.picture} alt={value.title}/>
-        //                             </div>
-        //                         </div>
-        //                     )
-        //                 })}
-        //             </div>
-        //         </div>
-        //     </div>
     );
 }
 

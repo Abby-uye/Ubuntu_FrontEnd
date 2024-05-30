@@ -1,9 +1,10 @@
 /* index.module.css */
 .chatContainer {
-    position: fixed;
+    /* position: fixed; */
     top: 10px;
-    left: 10px;
-    width: 300px;
+    /* left: 15px; */
+    width: 100%;
+    /* margin-left: 50px; */
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 10px;

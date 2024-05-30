@@ -3,12 +3,15 @@ import style from "./index.module.css"
 import {useState, useRef, useEffect} from 'react';
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-const {BACKEND_POST_BASE_URL} = require("../../../ApiUtils"); 
+import { useNavigate} from "react-router-dom";
+import {BACKEND_POST_BASE_URL} from "../../../ApiUtils"
+
 
 const PostModal = ({closeModal, openFlow}) => {
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
+    
     const fileRef = useRef(null);
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJxdWl6LWFwcGxpY2F0aW9uIiwic3ViIjoiYWNjZXNzX3Rva2VuIiwic2VuZGVyX2VtYWlsIjoiNjY1NWViOGQyZjZkNGUxMjVjZGQxOWIyIiwicmVjaXBpZW50X2VtYWlsIjoib2pvdDYzMEBnbWFpbC5jb20iLCJleHAiOjE3MTg2NzIwNjN9.xGI2fnsnGZ42OmBGxMyavESzcZbRt4x9bNWiEqAjBe4";
-
     const [postRequest, setPostRequest] = useState({title: "", body: ""});
     const [file, setFile] = useState();
     const [userId, setUserId] = useState();
@@ -27,33 +30,36 @@ const PostModal = ({closeModal, openFlow}) => {
     }
     
     useEffect(() => {
+        
+        if(token === null){
+            navigate("/login");
+        }
+
         try {
             const decoded = jwtDecode(token);
             setUserId(decoded.sender_email);
         } catch (error) {
             console.error('Invalid token:', error);
         }
-    }, [])
+        }, [])
 
-    async function handleSubmit(event){
-        event.preventDefault();
-        const form_data = new FormData();
-        form_data.append("title", postRequest.title);
-        form_data.append("body", postRequest.body);
-        form_data.append("image", file);
-        form_data.append("userId", userId);
-        
+        async function handleSubmit(event){
+            event.preventDefault();
+            const form_data = new FormData();
+            form_data.append("title", postRequest.title);
+            form_data.append("body", postRequest.body);
+            form_data.append("image", file);
+            form_data.append("userId", userId);
         try{
             var response = await axios.post(BACKEND_POST_BASE_URL, form_data);
-            if (response.status === 201){
+        if (response.status === 201){
                 alert("Post created successfully with id of "+ response.data.id)
-            }else {
+        }else {
                 alert(response.data.message);
-            }
+        }
         }catch(error){
             console.log(error);
         }
-
         setPostRequest({})
         setFile("");
     }
@@ -62,7 +68,7 @@ const PostModal = ({closeModal, openFlow}) => {
         fileRef.current.click();
     }
 
-    return(
+return(
         <div className={style.modalBackground}>
             <div className={style.modalContainer}>
                 <form className={style.form} onSubmit={handleSubmit}>

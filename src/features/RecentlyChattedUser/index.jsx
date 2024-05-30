@@ -1,100 +1,62 @@
-// 
 import React, { useState, useEffect } from 'react';
-import ChatHistory from '../ChatHistory';
+// import ChatHistory from '../ChatHistory';
 import styles from './index.module.css';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+const { BACKEND_MESSAGE_BASE_URL } = require("../../ApiUtils")
 
-const RecentlyChattedUsers = ({ selectedUserProp }) => {
+
+const RecentlyChattedUsers = ({ selectedUser }) => {
+    const nav = useNavigate()
     const [users, setUsers] = useState([]);
-    const [chatHistory, setChatHistory] = useState({});
-    const [selectedUser, setSelectedUser] = useState(selectedUserProp);
-    const [newMessage, setNewMessage] = useState('');
+    const [userId, setUserId] = useState("");
+
 
     useEffect(() => {
-        const storedUsers = JSON.parse(localStorage.getItem('recentUsers')) || [];
-        const storedChatHistory = JSON.parse(localStorage.getItem('chatHistory')) || {};
-        setUsers(storedUsers);
-        setChatHistory(storedChatHistory);
+
+        const fetchData = async () => {
+            var token = localStorage.getItem("token");
+            if(!token) nav("/login");
+            
+            const decodeToken = jwtDecode(token);
+
+            token = decodeToken.recipient_email;
+
+            console.log(decodeToken);
+
+            setUserId(token);
+
+            console.log(decodeToken.recipient_email);
+
+            console.log(userId);
+
+            try{
+               const response =  await axios.get(BACKEND_MESSAGE_BASE_URL+"/getAllRecipient/"+token)
+                setUsers(response.data);
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchData();
     }, []);
 
-    useEffect(() => {
-        if (selectedUserProp) {
-            setSelectedUser(selectedUserProp);
-        }
-    }, [selectedUserProp]);
+    const handleClick = (event) => {
+        const email = event.target.innerText;
+        selectedUser(email);
+    }
 
-    const saveUsers = (users) => {
-        localStorage.setItem('recentUsers', JSON.stringify(users));
-    };
-
-    const saveChatHistory = (chatHistory) => {
-        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-    };
-
-    const handleSendMessage = (name) => {
-        const newUser = { name, link: `#${name.toLowerCase()}` };
-
-        if (!chatHistory[name]) {
-            setChatHistory((prevHistory) => {
-                const updatedHistory = {
-                    ...prevHistory,
-                    [name]: [{ sender: 'System', text: `Sent a new message to ${name}`, timestamp: new Date().toISOString(), type: 'system' }]
-                };
-                saveChatHistory(updatedHistory);
-                return updatedHistory;
-            });
-        } else {
-            setSelectedUser(name);
-        }
-
-        const updatedUsers = [newUser, ...users.filter(user => user.name !== name)];
-        if (updatedUsers.length > 5) {
-            updatedUsers.pop();
-        }
-        setUsers(updatedUsers);
-        saveUsers(updatedUsers);
-    };
-
-    const handleSendMessageToSelectedUser = () => {
-        if (!selectedUser || !newMessage.trim()) return;
-
-        setChatHistory((prevHistory) => {
-            const updatedHistory = {
-                ...prevHistory,
-                [selectedUser]: [...prevHistory[selectedUser], { sender: 'You', text: newMessage.trim(), timestamp: new Date().toISOString(), type: 'sent' }]
-            };
-            saveChatHistory(updatedHistory);
-            return updatedHistory;
-        });
-        setNewMessage('');
-    };
-
+    
     return (
         <div className={styles.chatContainer}>
             <h2>Recently Chatted Users</h2>
             <ul className={styles.userList}>
                 {users.map((user, index) => (
                     <li key={index}>
-                        <a href={user.link} onClick={() => handleSendMessage(user.name)}>{user.name}</a>
+                        <a href={user.link} onClick={(href) => handleClick(href)}>{user.recipientEmail}</a>
                     </li>
                 ))}
             </ul>
-            <div className={styles.chatArea}>
-                {selectedUser && (
-                    <>
-                        <h3>Chat History with {selectedUser}</h3>
-                        <ChatHistory messages={chatHistory[selectedUser]} />
-                        <input
-                            type="text"
-                            value={newMessage}
-                            onChange={(e) => setNewMessage(e.target.value)}
-                            placeholder="Type a message"
-                            className={styles.messageInput}
-                        />
-                        <button onClick={handleSendMessageToSelectedUser} className={styles.sendButton}>Send</button>
-                    </>
-                )}
-            </div>
-
         </div>
     );
 };

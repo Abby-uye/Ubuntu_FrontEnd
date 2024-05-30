@@ -1,22 +1,16 @@
 import style from "./index.module.css"
-import images from "../../asset/login/gifForLogin.gif"
+import images from "../../assets/login/gifForLogin.gif"
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FilledButton from "../../components/reuseables/FilledButton";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 // import * as Yup from "yup";
 
 
 const Login = () => {
-    const navigate = useNavigate()
-    // const validationSchema = Yup.object().shape({
-    //     email: Yup.string()
-    //         .email('Invalid email address')
-    //         .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Must be a valid email Address')
-    //         .required('Email Address is required'),
-    // });
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -27,28 +21,27 @@ const Login = () => {
         setUser({
             ...user,
             [name]: value
-
         })
-
     }
 
+    useEffect(() => {
+        if (localStorage.getItem("token") !== null) {
+            navigate("/home");
+        }
+    }, [])
 
     const handleSubmit = async (e) => {
         console.log("email " + user.email)
         console.log("password " + user.password)
         e.preventDefault()
         try {
+            
             const response = await axios.post('http://localhost:8080/ubuntu/user/auth', {
                 email: user.email,
                 password: user.password
             })
-            if (response.data.token) {
-                localStorage.setItem("token", response.data.token)
-                navigate("/home")
-            }
-
-        } catch (err) {
-            toast.error(err.response.data.message, {
+        }catch (error) {
+            toast.error(error.response.data.message, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -64,6 +57,7 @@ const Login = () => {
     }
 
     return (
+
         <div className={style.main}>
             <img src={images} alt={"gif"} style={{width: "50%", height: "auto"}}/>
 
@@ -90,7 +84,5 @@ const Login = () => {
             <ToastContainer/>
         </div>
     )
-
-}
-
+}    
 export default Login
