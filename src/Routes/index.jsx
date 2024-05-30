@@ -23,10 +23,10 @@ export const Routes = [
         path: "/communityManagerPage",
         element: <CommunityManagerPage/>
     }
-    // , {
-    //     path: "/login",
-    //     element: <Login/>
-    // }
+    , {
+        path: "/login",
+        element: <Login/>
+    }
 
     , {
         path: "/add_student",

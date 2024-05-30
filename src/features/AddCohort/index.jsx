@@ -4,7 +4,7 @@ import React, {useEffect} from 'react';
 import {useState} from 'react';
 import axios from "axios";
 import {toast} from "react-toastify";
-import Modal from "../Modal"
+import Modal from "../CohortModal"
 
 
 const AddCohort = () => {
@@ -44,7 +44,7 @@ const AddCohort = () => {
             }
             window.location.reload(false);
         } catch (err) {
-            toast.error(err.response.data.message, {
+            toast.error("Cohort With Submitted Credentials Already Exist", {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -95,12 +95,12 @@ const AddCohort = () => {
     return (
 
         <div className={style.main}>
-            <button onClick={openModal}>Add Cohort</button>
+            <button onClick={openModal} className={style.communtityButton}>Add Cohort</button>
             <Modal show={showModal} onClose={closeModal}>
                 <h3 className={style.heading}>COHORT</h3>
                 <div className={style.minimain}>
-                    <p>Cohort Name</p>
                     <p>Cohort Number</p>
+                    <p>Cohort Name</p>
                 </div>
                 <div>
                     <ul className={style.map}>
