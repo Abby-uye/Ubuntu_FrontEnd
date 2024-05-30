@@ -10,12 +10,12 @@
     background-color: #FFFCFC ;
 }
 
-/*.message{*/
-/*    max-width: 60%;*/
-/*    padding: 10px;*/
-/*    border-radius: 8px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
+.message{
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
 
 .sentMessage {
     align-self: flex-end;

@@ -1,7 +1,7 @@
 import styles from "./index.module.css"
 import {useEffect, useState} from "react";
 import UserProfile from '../CreateProfile'
-import Cohort from "../Cohort";
+// import Cohort from "../Cohort";
 const DisplayCohortAndMembers =()=>{
     const [cohorts, setCohorts] = useState({});
     const [visibleCohorts, setVisibleCohorts] = useState({});

@@ -1,28 +1,40 @@
+import React from 'react'
 import style from "./index.module.css"
 import {FaHome, FaSearch} from "react-icons/fa";
 import {MdOutlinePostAdd} from "react-icons/md";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import {data} from "./data"
+import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
+import {useNavigate} from 'react-router-dom';
 import {Link} from "react-router-dom";
 import FilledButton from "../../components/reuseables/FilledButton";
 import ViewAllPost from "./ViewAllPost";
 
 
 const Home = () => {
-    function changeBackgroundOnOver  (e){
+
+    const navigate = useNavigate();
+
+    const handleClick = (e) => {
+        navigate(e)
+    };
+
+    function changeBackgroundOnOver(e) {
         e.target.style.backgroundColor = "#007bff"
     }
-    function changeBackgroundOutOver  (e){
+
+    function changeBackgroundOutOver(e) {
         e.target.style.backgroundColor = "#a6e1ec"
     }
 
     return (
         <div className={style.mainboard}>
             <div className={style.heading}>
+                <img src={dummyDp} className={style.dummyImage} alt={"dp"}/>
                 <div style={{backgroundColor: "#a6e1ec", width: "100%", height: "50px"}}></div>
                 <div className={style.searchMain}>
                     <FaSearch style={{fill: "#671BC7", fontSize: "15px"}}/>
-                    <input type={"search"}  placeholder={"Search"} className={style.search}/>
+                    <input type={"search"} placeholder={"Search"} className={style.search}/>
                 </div>
                 <IoIosNotifications style={{fill: "#671BC7", fontSize: "40px"}} className={style.notification}/>
             </div>
@@ -31,16 +43,19 @@ const Home = () => {
                 <div className={style.image_div}>
                     <div style={{paddingTop: "30px"}}>
                         <FaHome style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Home</h4>
+                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}
+                            onClick={handleClick("/home")}>Home</h4>
                     </div>
                     <div>
                         <MdOutlinePostAdd style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Post</h4>
+                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}
+                            onClick={handleClick("/post")}>Post</h4>
                     </div>
 
                     <div>
                         <IoIosChatboxes style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <Link to={"/chatConnection"} className={style.chatLink} onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Chat</Link>
+                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}
+                            onClick={handleClick("/communityManagerPage")}>Chat</h4>
                     </div>
                     <div>
                         <MdOutlinePostAdd style={{fill: "#671BC7", fontSize: "25px"}}/>
@@ -74,7 +89,6 @@ const Home = () => {
 
                     <ViewAllPost/>
                 </div>
-                <FilledButton textColor={"#671BC7"} backgroundColor={"#a6e1ec"} text={"+Update"}/>
 
             </div>
         </div>

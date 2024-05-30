@@ -4,6 +4,7 @@ import Home from "../features/Home";
 import AddMemberToCohort from "../features/AddMemberToCohort";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
+import AddCohort from "../features/AddCohort";
 
 export const Routes = [
     {
@@ -29,6 +30,13 @@ export const Routes = [
 
     , {
         path: "/add_student",
+        element: <AddMemberToCohort/>
+    },
+    {
+        path: "/addCohort",
+        element: <AddCohort/>
+    },{
+        path: "/addMember",
         element: <AddMemberToCohort/>
     }
 ]
