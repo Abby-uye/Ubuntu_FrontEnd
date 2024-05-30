@@ -7,7 +7,7 @@ import Login from "../features/Login";
 
 export const Routes = [
     {
-        path: "/home",
+        path: "",
         element: <Home/>
     },
     {
@@ -22,10 +22,10 @@ export const Routes = [
         path: "/communityManagerPage",
         element: <CommunityManagerPage/>
     }
-    // , {
-    //     path: "/login",
-    //     element: <Login/>
-    // }
+    , {
+        path: "/login",
+        element: <Login/>
+    }
 
     , {
         path: "/add_student",
