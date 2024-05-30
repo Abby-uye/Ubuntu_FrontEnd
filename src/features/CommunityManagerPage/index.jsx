@@ -1,10 +1,10 @@
 import style from "./index.module.css"
-import addCohort from "../../assetss/communityManger/addCohortIcon1-removebg-1.png"
-import addStudents from "../../assetss/communityManger/addStudentIcon-removebg-preview.png"
-import removeStudent from "../../assetss/communityManger/removeAStudentIcon-removebg-preview.png"
-import addEvent from "../../assetss/communityManger/addEventIcon-removebg-preview.png"
-import updateEvent from "../../assetss/communityManger/updateImageIcon-removebg-preview.png"
-import deleteEvent from "../../assetss/communityManger/deleteEventIcon-removebg-preview.png"
+import addCohort from "../../assets/communityManger/addCohortIcon1-removebg-1.png"
+import addStudents from "../../assets/communityManger/addStudentIcon-removebg-preview.png"
+import removeStudent from "../../assets/communityManger/removeAStudentIcon-removebg-preview.png"
+import addEvent from "../../assets/communityManger/addEventIcon-removebg-preview.png"
+import updateEvent from "../../assets/communityManger/updateImageIcon-removebg-preview.png"
+import deleteEvent from "../../assets/communityManger/deleteEventIcon-removebg-preview.png"
 
 import AddMemberToCohort from "../AddMemberToCohort";
 import AddCohort from "../AddCohort";
