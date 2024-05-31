@@ -33,7 +33,8 @@ const DisplayCohortAndMembers =()=>{
                 const response = await axios.get(BACKEND_COHORT_BASE_URL+"/findAllCohort");
                 if (response.request.status === 200){
                     console.log(response.data);
-                    setCohorts(response.data);
+                    var cohort = await response.data;
+                    setCohorts(cohort);
                 }else {
                     console.log(response);
                     setCohorts([]);
@@ -43,7 +44,7 @@ const DisplayCohortAndMembers =()=>{
                 console.log(error);
             }
         }
-        fetchCohorts();
+        fetchCohorts().then();
 
     }, []);
 

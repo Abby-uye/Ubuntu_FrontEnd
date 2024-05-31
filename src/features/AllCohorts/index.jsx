@@ -5,15 +5,21 @@ import style from "./index.module.css"
 import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
 import Cohort from "../Cohort";
 const AllCohorts = ()=>{
-const [isOpen,setIsOpen] = useState(false);
-const  toggleIsOpen = ()=>{
-setIsOpen(!isOpen);
-};
+
+    const [isOpen, setIsOpen] = useState(false);
+
+
+    const  toggleIsOpen = ()=>{
+
+        setIsOpen(!isOpen);
+
+    };
     const clearLocalStorage = () => {
         localStorage.clear();
         window.location.reload(); // Reload the page to reflect the changes
     };
-return (
+
+    return (
 
     <div>
 

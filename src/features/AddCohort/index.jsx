@@ -120,14 +120,13 @@ const AddCohort = () => {
                     <form onSubmit={handleSubmit} className={style.formInfo}>
                         <input
                             type="number"
-                            name={"cohortName"}
+                            name={"cohortNumber"}
                             onChange={handleChange}
                             placeholder="Enter new cohort number"
-
                         />
                         <input
                             type="text"
-                            name={"cohortNumber"}
+                            name={"cohortName"}
                             onChange={handleChange}
                             placeholder="Enter new cohort name"
                         />
