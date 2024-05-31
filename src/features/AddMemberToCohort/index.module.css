@@ -1,0 +1,108 @@
+.addMember {
+    text-align: center;
+
+}
+
+.inModal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 20px;
+
+}
+.formItems{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding-bottom: 20px;
+
+}
+
+.theButton{
+    width: 100px;
+    background-color:#671BC7 ;
+    height: 30px;
+    border-radius: 5px;
+    color: whitesmoke;
+    border: none;
+    cursor: pointer;
+
+}
+
+.inputTag{
+    width: 100%;
+    height: 6vh;
+    border: 1px solid #671BC7;
+    padding-left: 5px;
+    outline: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+.inputTag::placeholder{
+    width: 300px;
+    height: 6vh;
+    padding-left: 5px;
+
+
+}
+/*p{*/
+/*    font-weight: bolder;*/
+/*    font-family: lato, serif;*/
+/*    font-size: 50px;*/
+/*}*/
+.addNative{
+    font-weight: bolder;
+    font-family: lato, serif;
+    font-size: 40px;
+}
+
+.selectTag{
+    height: 50px;
+    overflow-y: scroll;
+    border: 1px solid #671BC7;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.submitButtons{
+    display: flex;
+
+    flex-direction: row;
+    gap: 100px;
+}
+
+.error{
+
+    color: red;
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.theForm{
+    width: 100%;
+    box-sizing: border-box;
+
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+.communtityButton{
+    width: 160px;
+    height: 7vh;
+    border: 0;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 400;
+    background-color: #671BC7;
+    text-decoration: none;
+    border: none;
+
+}

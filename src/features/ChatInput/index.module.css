@@ -1,0 +1,23 @@
+.inputContainer{
+display: flex;
+}
+
+.input{
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #FF2E2E;
+    outline: none;
+    color: #38516D;
+}
+
+.buttn{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 0 8px 8px 0;
+    border: 1px solid #ccc;
+    background-color: #38516D;
+    color: #fff;
+    cursor: pointer;
+}

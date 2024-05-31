@@ -1,0 +1,138 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    background-color: #a6e1ec;
+    color: #671BC7;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 4px;
+    gap: 10px;
+
+}
+.noticationHeading{
+    gap: 50px;
+}
+
+.heading > input {
+    height: 3.5vh;
+    border-radius: 4px;
+    width: 20%;
+    background-color: #a6e1ec;
+    color: #671BC7;
+}
+
+.community {
+    width: 25%;
+    background-color: #a6e1ec;
+    color: #671BC7;
+    height: 8vh;
+    font-size: 20px;
+}
+
+.duties {
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height:120vh;
+    border-radius: 8px;
+    padding: 35px 22px;
+    color: #671BC7;
+    background-color: #a6e1ec;
+    gap: 50px;
+
+}
+
+.addCohort {
+    display: flex;
+    gap: 20px;
+}
+
+.addCohortImage {
+    width: 40px;
+    height: 5vh;
+    font-weight: 1000;
+}
+
+.addStudents {
+    display: flex;
+    gap: 30px;
+}
+
+.addStudentsImage {
+    width: 26px;
+    height: 4vh;
+}
+
+.removeStudent {
+    display: flex;
+    gap: 25px;
+}
+.removeStudentImage{
+    width: 30px;
+    height: 4vh;
+}
+.addEvent{
+    display: flex;
+    gap: 20px;
+}
+.addEventImage {
+    width: 30px;
+    height: 4vh;
+
+}
+.updateEvent{
+    display: flex;
+    gap: 20px;
+}
+.updateEventImage{
+    width: 28px;
+    height: 4vh;
+}
+.deleteEvent{
+    display: flex;
+    gap: 20px;
+}
+.deleteEventImage{
+    width: 28px;
+    height: 4vh;
+}
+.communtityButton{
+    width: 160px;
+    height: 7vh;
+    border: 0;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 400;
+    /*color: white;*/
+    background-color: #671BC7;
+    text-decoration: none;
+    border: none;
+
+}
+.chat{
+    display: flex;
+    gap: 20px;
+}
+.post{
+    display: flex;
+    gap: 20px;
+}
+.eventImage{
+    width: 28px;
+    height: 4vh;
+}
+.event{
+    display: flex;
+    gap: 20px;
+}
+.submain{
+    display: flex;
+    gap: 40px;
+}

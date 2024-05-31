@@ -1,0 +1,116 @@
+/* index.module.css */
+.chatContainer {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.chatContainer h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.userList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.userList li {
+    margin-bottom: 5px;
+}
+
+.userList li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.userList li a:hover {
+    text-decoration: underline;
+}
+
+.chatArea {
+    margin-top: 20px;
+}
+
+.chatHistory {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.sentMessage {
+    align-self: flex-end;
+    background-color: #DCF8C6;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    max-width: 70%;
+}
+
+.receivedMessage {
+    align-self: flex-start;
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    max-width: 70%;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    text-align: right;
+}
+
+.messageInput {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.sendButton {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sendButton:hover {
+    background-color: #0056b3;
+}
+
+.exampleButtons {
+    margin-top: 20px;
+}
+
+.exampleButtons button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.exampleButtons button:hover {
+    background-color: #0056b3;
+}
