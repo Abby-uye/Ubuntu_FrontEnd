@@ -3,7 +3,7 @@ import images from "../../assets/login/gifForLogin.gif"
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FilledButton from "../../components/reuseables/FilledButton";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 // import * as Yup from "yup";
@@ -21,11 +21,14 @@ const Login = () => {
         setUser({
             ...user,
             [name]: value
-
         })
-
     }
 
+    useEffect(() => {
+        if (localStorage.getItem("token") !== null) {
+            navigate("");
+        }
+    }, [])
 
     const handleSubmit = async (e) => {
         console.log("email " + user.email)
@@ -35,6 +38,7 @@ const Login = () => {
             navigate("/communityManagerPage")
         }
         try {
+            
             const response = await axios.post('http://localhost:8080/ubuntu/user/auth', {
                 email: user.email,
                 password: user.password
@@ -63,6 +67,7 @@ const Login = () => {
     }
 
     return (
+
         <div className={style.main}>
             <img src={images} alt={"gif"} style={{width: "50%", height: "auto"}}/>
 
@@ -90,7 +95,5 @@ const Login = () => {
             <ToastContainer/>
         </div>
     )
-
-}
-
+}    
 export default Login

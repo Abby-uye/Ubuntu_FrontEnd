@@ -1,5 +1,5 @@
 import styles from "./index.module.css"
-const ChatHistory = ({messages})=>{
+const ChatHistory = ({messages})=> {
     return (
         <div className={styles.chatHistory}>
             {messages.map((msg, index) => (
