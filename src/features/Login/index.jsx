@@ -6,6 +6,7 @@ import FilledButton from "../../components/reuseables/FilledButton";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import logo from "../../assets/Ubuntu-Logo.png"
 // import * as Yup from "yup";
 
 
@@ -69,11 +70,11 @@ const Login = () => {
     return (
 
         <div className={style.main}>
-            <img src={images} alt={"gif"} style={{width: "50%", height: "auto"}}/>
+            <img src={logo} alt={"gif"} style={{width: "60%", height: "97vh"}}/>
 
             <div className={style.form}>
-                <p className={style.welcome} style={{color: "#671BC7"}}>Welcome !</p>
-                <p className={style.login} style={{color: "#671BC7"}}>Sign in to stay connected with the most <span
+                <p className={style.welcome} style={{color: "#FF2E2E"}}>Welcome !</p>
+                <p className={style.login} style={{color: "black"}}>Sign in to stay connected with the most <span
                     style={{display: "block"}}>    prestigious community</span></p>
 
                 <form className={style.formInfo} onSubmit={(e) => handleSubmit(e)}>
@@ -86,7 +87,7 @@ const Login = () => {
                            onChange={handleChange}></input>
 
                     <div className={style.button}>
-                        <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Login"}/>
+                        <FilledButton  textColor={"white"} backgroundColor={"#FF2E2E"} text={"Login"}/>
                     </div>
                 </form>
 

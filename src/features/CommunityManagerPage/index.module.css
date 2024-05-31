@@ -8,8 +8,7 @@
 .heading {
     display: flex;
     align-items: center;
-    background-color: #a6e1ec;
-    color: #671BC7;
+    background-color: whitesmoke;
     font-size: 20px;
     font-weight: 400;
     border-radius: 4px;
@@ -21,19 +20,22 @@
 }
 
 .heading > input {
-    height: 3.5vh;
+    height: 6vh;
     border-radius: 4px;
+    border: 1px solid rgba(255, 0, 0, 0.92);
+    outline: none;
     width: 20%;
-    background-color: #a6e1ec;
-    color: #671BC7;
+    background-color: whitesmoke;
+    font-size: 16px;
 }
 
 .community {
     width: 25%;
-    background-color: #a6e1ec;
-    color: #671BC7;
+    background-color:whitesmoke;
+    color:black;
     height: 8vh;
     font-size: 20px;
+    font-family: lato, serif;
 }
 
 .duties {
@@ -44,7 +46,7 @@
     border-radius: 8px;
     padding: 35px 22px;
     color: #671BC7;
-    background-color: #a6e1ec;
+    background-color: whitesmoke;
     gap: 50px;
 
 }
@@ -73,6 +75,7 @@
 .removeStudent {
     display: flex;
     gap: 25px;
+
 }
 .removeStudentImage{
     width: 30px;
@@ -106,14 +109,13 @@
 .communtityButton{
     width: 160px;
     height: 7vh;
-    border: 0;
-    border-radius: 6px;
+    border-radius: 10px;
     font-size: 20px;
-    font-weight: 400;
-    /*color: white;*/
-    background-color: #671BC7;
+    background-color:rgba(255, 0, 0, 0.92);
     text-decoration: none;
     border: none;
+    color: white;
+    font-family: lato, serif;
 
 }
 .chat{
