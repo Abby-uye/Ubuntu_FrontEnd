@@ -5,10 +5,12 @@ import AddMemberToCohort from "../features/AddMemberToCohort";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
 import AddCohort from "../features/AddCohort";
+import AddEvent from "../features/AddEvent";
+import AllEvent from "../features/AllEvents";
 
 export const Routes = [
     {
-        path: "",
+        path: "/home",
         element: <Home/>
     },
     {
@@ -16,8 +18,8 @@ export const Routes = [
         element: <Chat/>,
     },
     {
-        path:"/community_manager",
-        element:<CohortState/>,
+        path: "/community_manager",
+        element: <CohortState/>,
     },
     {
         path: "/communityManagerPage",
@@ -35,8 +37,16 @@ export const Routes = [
     {
         path: "/addCohort",
         element: <AddCohort/>
-    },{
+    }, {
         path: "/addMember",
         element: <AddMemberToCohort/>
+    },
+    {
+        path: "/addEvent",
+        element: <AddEvent/>
+    }
+    , {
+        path: "/allEvent",
+        element: <AllEvent/>
     }
 ]

@@ -3,11 +3,10 @@ import style from "./index.module.css"
 import {FaHome, FaSearch} from "react-icons/fa";
 import {MdOutlinePostAdd} from "react-icons/md";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
-import {data} from "./data"
 import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
 import {useNavigate} from 'react-router-dom';
-import {Link} from "react-router-dom";
-import ViewAllPost from "./ViewAllPost";
+import ViewAllPost from "../ViewAllPost";
+import FilledButton from "../../components/reuseables/FilledButton";
 
 
 const Home = () => {
@@ -42,8 +41,7 @@ const Home = () => {
                 <div className={style.image_div}>
                     <div style={{paddingTop: "30px"}}>
                         <FaHome style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}
-                            onClick={handleClick("/home")}>Home</h4>
+                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Home</h4>
                     </div>
                     <div>
                         <MdOutlinePostAdd style={{fill: "#671BC7", fontSize: "25px"}}/>
@@ -54,7 +52,7 @@ const Home = () => {
                     <div>
                         <IoIosChatboxes style={{fill: "#671BC7", fontSize: "25px"}}/>
                         <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}
-                            onClick={handleClick("/communityManagerPage")}>Chat</h4>
+                            onClick={handleClick("/chat")}>Chat</h4>
                     </div>
                     <div>
                         <MdOutlinePostAdd style={{fill: "#671BC7", fontSize: "25px"}}/>
@@ -62,6 +60,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div>
+
                     {/*{data.map(value => {*/}
                     {/*    return (*/}
                     {/*        <div key={value.title} style={{*/}
@@ -88,7 +87,6 @@ const Home = () => {
 
                     <ViewAllPost/>
                 </div>
-
             </div>
         </div>
         // return (

@@ -5,8 +5,7 @@ const ChatHistory = ({messages})=>{
             {messages.map((msg, index) => (
                 <div
                     key={index}
-                    className={msg.type === 'sent' ? styles.sentMessage : styles.receivedMessage}
-                >
+                    className={msg.type === 'sent' ? styles.sentMessage : styles.receivedMessage}>
                     <strong>{msg.sender}:</strong> {msg.text}
 
                     <div className={styles.timestamp}>

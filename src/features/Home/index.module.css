@@ -3,11 +3,13 @@
     flex-direction: column;
     gap: 30px;
     /*border: lightcoral solid;*/
-    width: 35%;
+    width: 20%;
+
     border-radius: 5px;
     background-color: #a6e1ec;
     padding: 25px 20px;
     font-size: 25px;
+    height: 100vh
 
 }
 
@@ -37,7 +39,7 @@
     height: 50px;
 }
 .heading{
-  display: flex;
+    display: flex;
     background-color: #a6e1ec;
 
 
