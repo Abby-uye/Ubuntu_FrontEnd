@@ -1,7 +1,7 @@
 import styles from "./index.module.css"
 import {useEffect, useState} from "react";
 import UserProfile from '../CreateProfile'
-// import axios from "axios";
+import axios from "axios";
 const {BACKEND_COHORT_BASE_URL, BACKEND_USER_BASE_URL} = require("../../ApiUtils")
 
 const DisplayCohortAndMembers =()=>{

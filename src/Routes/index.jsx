@@ -9,7 +9,7 @@ import AddCohort from "../features/AddCohort";
 
 export const Routes = [
     {
-        path: "",
+        path: "/home",
         element: <Home/>
     },
     {
@@ -19,10 +19,6 @@ export const Routes = [
     {
         path: "/community_manager",
         element: <CohortState/>,
-    },
-    {
-        path:"/post",
-        element:<PostModal/>,
     },
     {
         path: "/communityManagerPage",

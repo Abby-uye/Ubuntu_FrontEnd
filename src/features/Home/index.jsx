@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 import PostModal from "../post/PostModal";
 import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
 import {Link, useNavigate} from "react-router-dom";
-import ViewAllPost from "./ViewAllPost";
+import ViewAllPost from "../ViewAllPost";
+import logo from "../../assets/community.jpeg"
 
 
 const Home = () => {
@@ -54,42 +55,50 @@ const Home = () => {
     return (
         <div className={style.mainboard}>
             <div className={style.heading}>
-                <img src={dummyDp} className={style.dummyImage} alt={"dp"}/>
-                <div style={{backgroundColor: "#a6e1ec", width: "100%", height: "50px"}}></div>
-                <div className={style.searchMain}>
-                    <FaSearch style={{fill: "#671BC7", fontSize: "15px"}}/>
-                    <input type={"search"} placeholder={"Search"} className={style.search}/>
+                <div className={style.ourLogo}>
+                    <img src={logo} alt={"Logo"} className={style.logo}/>
+                    <p className={style.ubuntu}>Ubuntu</p>
                 </div>
-                <IoIosNotifications style={{fill: "#671BC7", fontSize: "40px"}} className={style.notification}/>
+                <div className={style.searchMain}>
+                    <input type={"search"} placeholder={"Search"} className={style.search}/>
+                    <FaSearch className={style.faSearch} style={{fill: "black", fontSize: "18px"}}/>
+
+                </div>
+                <IoIosNotifications style={{fill: "black", fontSize: "40px"}} className={style.notification}/>
+                <div className={style.profile}>
+                    <p className={style.profileP}>Profile</p>
+                <img src={dummyDp} className={style.dummyImage} alt={"dp"}/>
+                </div>
             </div>
 
             <div className={style.main}>
                 <div className={style.image_div}>
                     <div style={{paddingTop: "30px"}}>
-                        <FaHome style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseOver={changeBackgroundOnOver}onMouseLeave={changeBackgroundOutOver}
-                            onClick={() => handleClick("")}>Home</h4>                            
+                        <FaHome style={{fill: "black", fontSize: "25px"}}/>
+                        <h4  className={style.btnText}
+                            onClick={() => handleClick("")}>Home</h4>
                     </div>
 
                     <div>
-                        <MdOutlinePostAdd style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseLeave={changeBackgroundOutOver}
-                            onMouseOver={(event) => modalFunc(event)}>Post</h4>
+                        <MdOutlinePostAdd style={{fill: "black", fontSize: "25px"}}/>
+                        <h4  className={style.btnText}
+                            onClick={(event) => modalFunc(event)}>Post</h4>
                             {openModal && <PostModal closeModal={setOpenModal} openFlow={openOverFlow}/>}
                     </div>
 
                     <div>
-                        <IoIosChatboxes style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}
+                        <IoIosChatboxes style={{fill: "black", fontSize: "25px"}}/>
+                        <h4  className={style.btnText}
                             onClick={() => handleClick("/chat")}>Chat</h4>
                     </div>
-                    
+
                     <div>
-                        <MdOutlinePostAdd style={{fill: "#671BC7", fontSize: "25px"}}/>
-                        <h4 onMouseOver={changeBackgroundOnOver} onMouseLeave={changeBackgroundOutOver}>Event</h4>
+                        <MdOutlinePostAdd style={{fill: "black", fontSize: "25px"}}/>
+                        <h4 className={style.btnText} >Event</h4>
                     </div>
                 </div>
-                <div>
+
+                <div className={style.viewAllPost}>
                     <ViewAllPost/>
                 </div>
             </div>
