@@ -1,7 +1,7 @@
 import styles from "./index.module.css"
 import {useEffect, useState} from "react";
 import UserProfile from '../CreateProfile'
-// import axios from "axios";
+import axios from "axios";
 const {BACKEND_COHORT_BASE_URL, BACKEND_USER_BASE_URL} = require("../../ApiUtils")
 
 const DisplayCohortAndMembers =()=>{
@@ -33,7 +33,8 @@ const DisplayCohortAndMembers =()=>{
                 const response = await axios.get(BACKEND_COHORT_BASE_URL+"/findAllCohort");
                 if (response.request.status === 200){
                     console.log(response.data);
-                    setCohorts(response.data);
+                    var cohort = await response.data;
+                    setCohorts(cohort);
                 }else {
                     console.log(response);
                     setCohorts([]);
@@ -43,7 +44,7 @@ const DisplayCohortAndMembers =()=>{
                 console.log(error);
             }
         }
-        fetchCohorts();
+        fetchCohorts().then();
 
     }, []);
 

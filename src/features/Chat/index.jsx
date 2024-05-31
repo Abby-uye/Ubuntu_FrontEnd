@@ -3,22 +3,22 @@ import style from "./index.module.css"
 import ChatHistory from "../ChatHistory";
 import ChatInput from "../ChatInput";
 import RecentlyChattedUser from "../RecentlyChattedUser";
-// import CohortState from "../CohortState";
-// import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
 import AllCohorts from "../AllCohorts";
 import { useNavigate } from "react-router-dom";
+import {toast, ToastContainer} from 'react-toastify';
 import axios from "axios";
 import { BACKEND_CHATROOM_BASE_URL } from "../../ApiUtils";
 import { jwtDecode } from "jwt-decode";
 
 
-const Chat = ()=>{
-    const navigate = useNavigate()
+const Chat = ()=> {
+    const navigate = useNavigate();
     const [messages,setMessages] = useState([]);
     const [selectedUser, setSelectedUser] = useState("");
     const [openTextArea, setOpenTextArea] = useState(false);
+    const [userEmail, setUserEmail] = useState();
+    const [sendData, setSendData] = useState(null);
     var email = "";
-
 
     
     useEffect(() => {
@@ -27,60 +27,81 @@ const Chat = ()=>{
         }
         const decodedObject = jwtDecode(localStorage.getItem("token"));
         email = decodedObject.recipient_email;
-    });
+        setUserEmail(email);
+    }, []);
 
     useEffect(() => {
         const initializeReuqest = async() => {
 
             const payLoad = {
                 recipient_email: selectedUser,
-                sender_email: email
-            }
-            console.log(payLoad);
+                sender_email: userEmail
+            };
+
+            
             try{
                 const response =  await axios.post(BACKEND_CHATROOM_BASE_URL+"/initialize", payLoad);
+
                 console.log(response);
 
                 if (response.status === 200){
                     console.log(response);
                     if(response.data.activated){
                         setOpenTextArea(true);
+                    }else {
+                        toast.success(`Message Request Sent To ${selectedUser}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                            });
+                        setOpenTextArea(false);
                     }
-
                 }
-
             }catch(error){
                 console.log(error);
             }
     }
     console.log(selectedUser);
     if(selectedUser !== "") initializeReuqest();      
-    }, [selectedUser])
+    }, [selectedUser]);
 
 
 
     const handleSendMessage = (message) => {
-        setMessages([...messages, { text: message, sender: 'You' }]);
+        if(message !== ""){
+            sendData({
+                content : message
+            })
+        }
+        addMessageToList({
+            content: message,
+            username: email
+        })
     };
 
-    const receiveMessage = (message) => {
-        setMessages(prevMessages => [...prevMessages, { text: message, sender: 'Alice', type: 'received' }]);
-    };
+    const addMessageToList = (val) => {
+        if (val.room == "") return;
+        setMessages([...messages, val]);
+      };
 
     return(
         <div className={style.mainCont}>
 
-            {/*<CohortState/>*/}
-            {/*<DisplayCohortAndMembers/>*/}
         <div className={style.users}>
             <AllCohorts/>
             <RecentlyChattedUser selectedUser={setSelectedUser}/>
         </div>
         {openTextArea && 
         <div className={style.messageCont}>
-            <ChatHistory messages={messages}/> <ChatInput onSend={handleSendMessage}/>
-            {/* // <button onClick={() => receiveMessage("Hello from Alice!")}>Simulate Receive</button> */}
+            {/* <ChatHistory selectedUser={selectedUser} sendData={setSendData} username={userEmail}/>  */}
+            <ChatInput onSend={handleSendMessage}/>
             </div>}
+            <ToastContainer/>
         </div>
     )
 
