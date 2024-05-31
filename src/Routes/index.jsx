@@ -21,10 +21,6 @@ export const Routes = [
         element: <CohortState/>,
     },
     {
-        path:"/post",
-        element:<PostModal/>,
-    },
-    {
         path: "/communityManagerPage",
         element: <CommunityManagerPage/>
     }

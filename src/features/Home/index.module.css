@@ -6,7 +6,7 @@
     width: 20%;
     height: 77vh;
     border-radius: 5px;
-    background-color: #a6e1ec;
+    background-color: whitesmoke;
     padding: 25px 20px;
     font-size: 25px;
 
@@ -34,30 +34,35 @@
     gap: 30px;
 }
 .notification{
-    background-color: #a6e1ec;
     height: 50px;
 }
 .heading{
   display: flex;
-    background-color: #a6e1ec;
-
+    background-color: #FF2E2E;
+    justify-content: space-between;
+    border-radius: 5px;
 
 }
-.searchMain{
-    display: flex;
-    background-color: #a6e1ec;
-    justify-content: left;
-    align-items: center;
-    width: 50%;
-    gap: 10px;
-}
+/*.searchMain{*/
+/*    display: flex;*/
+/*    background-color: whitesmoke;*/
+/*    justify-content: left;*/
+/*    align-items: center;*/
+/*    width: 50%;*/
+/*    gap: 10px;*/
+/*}*/
 .search{
-    height: 3.5vh;
+    height: 7vh;
     border-radius: 4px;
-    width: 80%;
-    background-color: #a6e1ec;
-    color: #671BC7;
-    border: 1px solid #671BC7;
+    background-color: whitesmoke;
+    border: 1px solid #FF2E2E;
+    outline: none;
+    padding-left: 10px;
+    font-size: 20px;
+    position: absolute;
+    margin-top: 7px;
+    width: 300px;
+
 }
 .chatLink{
     outline: none;
@@ -67,10 +72,67 @@
     color: #671BC7;
 }
 .dummyImage{
-    width: 60px;
-    height: 7vh;
-    background-color: #a6e1ec;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    border-radius: 10vh;
+    width: 40px;
+    height: 5vh;
+
+
+
+}
+.btnText{
+    color: white;
+    background-color: #FF2E2E;
+    width: 100px;
+    border-radius: 8px;
+    font-family: lato, serif;
+    font-size: 20px;
+
+
+}
+.navBar{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #FF2E2E;
+
+
+}
+style.viewAllPost{
+    width: 10%;
+}
+
+.ourLogo{
+    display: flex;
+    flex-direction: row;
+}
+.logo{
+    width: 40px;
+    height: 5vh;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+.ubuntu{
+    font-weight: bolder;
+   color: white;
+    font-family: "MS Outlook";
+    font-size: 20px;
+
+
+}
+
+.faSearch{
+    z-index: 3;
+    top: 20px;
+    position: relative;
+    left: 270px;
+
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+.profileP{
+    font-weight: bold;
+    font-family: lato, serif;
 }
