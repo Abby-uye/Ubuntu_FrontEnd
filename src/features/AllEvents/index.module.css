@@ -1,0 +1,59 @@
+.bodyMain{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+.main{
+    height: auto;
+    background-color: rgba(255, 0, 0, 0.92);
+    width: 100%;
+}
+.heading{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    font-size: 30px;
+    height: 10vh;
+}
+.heading > h3{
+    margin: 0;
+}
+.eventDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: whitesmoke;
+    width: 93.8%;
+    padding: 10px 20px 10px 20px;
+
+}
+.eventDetails > p{
+    margin: 0;
+    font-size: 20px;
+}
+.eventDetails > h4{
+    margin: 0;
+}
+.eventDetails > h3{
+    margin: 0;
+    font-size: 25px;
+}
+
+.map{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.communtityButton{
+    width: 160px;
+    height: 7vh;
+    border: 0;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 400;
+    background-color: rgba(255, 0, 0, 0.92);
+    text-decoration: none;
+    border: none;
+}

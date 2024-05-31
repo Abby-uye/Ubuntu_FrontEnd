@@ -5,6 +5,8 @@ import AddMemberToCohort from "../features/AddMemberToCohort";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
 import AddCohort from "../features/AddCohort";
+import AddEvent from "../features/AddEvent";
+import AllEvent from "../features/AllEvents";
 
 export const Routes = [
     {
@@ -38,5 +40,13 @@ export const Routes = [
     },{
         path: "/addMember",
         element: <AddMemberToCohort/>
+    },
+    {
+        path: "/addEvent",
+        element: <AddEvent/>
+    }
+    , {
+        path: "/allEvent",
+        element: <AllEvent/>
     }
 ]

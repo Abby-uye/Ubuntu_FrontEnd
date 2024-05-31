@@ -51,6 +51,7 @@ const Login = () => {
             }
 
         } catch (err) {
+
             toast.error("Invalid details", {
                 position: "top-right",
                 autoClose: 3000,

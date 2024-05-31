@@ -99,10 +99,38 @@ const Home = () => {
                 </div>
 
                 <div className={style.viewAllPost}>
+                <div>
+
+                    {/*{data.map(value => {*/}
+                    {/*    return (*/}
+                    {/*        <div key={value.title} style={{*/}
+                    {/*            display: "flex",*/}
+                    {/*            flexDirection: "column",*/}
+                    {/*            justifyContent: "center",*/}
+                    {/*            alignItems: "center"*/}
+                    {/*        }}>*/}
+                    {/*            <div style={{width: "45%"}}>*/}
+                    {/*                <h3>{value.title}</h3>*/}
+                    {/*                <p>{value.description}</p>*/}
+                    {/*            </div>*/}
+                    {/*            <div style={{*/}
+                    {/*                display: "flex",*/}
+                    {/*                justifyContent: "center",*/}
+                    {/*                alignItems: "center",*/}
+                    {/*                width: "65%"*/}
+                    {/*            }}>*/}
+                    {/*                <img style={{width: "65%"}} src={value.picture} alt={value.title}/>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    )*/}
+                    {/*})}*/}
+
                     <ViewAllPost/>
                 </div>
             </div>
+            </div>
         </div>
+
     );
 }
 
