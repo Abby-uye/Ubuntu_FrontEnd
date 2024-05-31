@@ -107,10 +107,10 @@ const AddCohort = () => {
                         {(Array.isArray(cohorts) ? cohorts : []).map((cohort, index) => (
                             <div className={style.cohortdetails}>
                                 <p key={index}>
-                                    {cohort.cohortNumber}
+                                    {cohort.cohortName}
                                 </p>
                                 <p key={index}>
-                                    {cohort.cohortName}
+                                    {cohort.cohortNumber}
                                 </p>
                             </div>
 
@@ -130,7 +130,7 @@ const AddCohort = () => {
                             onChange={handleChange}
                             placeholder="Enter new cohort name"
                         />
-                        <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Add"}/>
+                        <FilledButton textColor={"white"} backgroundColor={"rgba(255, 0, 0, 0.92)"} text={"Add"}/>
                     </form>
                 </div>
             </Modal>

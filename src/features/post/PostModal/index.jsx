@@ -5,6 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
 import {BACKEND_POST_BASE_URL} from "../../../ApiUtils"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBars, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 
 const PostModal = ({closeModal, openFlow}) => {
@@ -72,7 +74,9 @@ return(
         <div className={style.modalBackground}>
             <div className={style.modalContainer}>
                 <form className={style.form} onSubmit={handleSubmit}>
-                    <button onClick={closeModalFunc}>X</button>
+                    <div className={style.faTimes}>
+                    <FontAwesomeIcon  onClick={closeModalFunc} icon={faTimes}/>
+                    </div>
                     <input
                     required
                     placeholder="What is The Gist"
@@ -80,14 +84,14 @@ return(
                     name="title"
                     type="text"
                     />
-                    <input
+                    <textarea
                     placeholder="What is Happening"
                     onChange={handleInputChange}
                     name="body"
-                    type="text"
+                    className={style.textArea}
                     />
                     <div>
-                    <CiImageOn size="25px" color="#a6e1ec" onClick={handleIconClick}/>
+                    <CiImageOn size="30px" color="black" onClick={handleIconClick}/>
                     <input
                     type="file"
                     name="file"

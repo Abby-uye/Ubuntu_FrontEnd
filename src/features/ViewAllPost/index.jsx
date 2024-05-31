@@ -29,7 +29,7 @@ const ViewAllPost = () => {
 
 
     return (
-        <div>
+        <div className={styles.viewAllPost} >
             {posts.length > 0 ? (
                 posts.map((post, index) => (
                     <div key={index}>
