@@ -90,7 +90,6 @@ const Home = () => {
                         <IoIosChatboxes style={{fill: "black", fontSize: "25px"}}/>
                         <h4  className={style.btnText}
                             onClick={() => handleClick("/chat")}>Chat</h4>
-                            onClick={handleClick("/chat")}>Chat</h4>
                     </div>
 
                     <div>
@@ -129,7 +128,9 @@ const Home = () => {
                     <ViewAllPost/>
                 </div>
             </div>
+            </div>
         </div>
+
     );
 }
 
