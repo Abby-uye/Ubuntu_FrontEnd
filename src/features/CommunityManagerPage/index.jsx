@@ -6,7 +6,6 @@ import addEvent from "../../assets/communityManger/addEventIcon-removebg-preview
 import updateEvent from "../../assets/communityManger/updateImageIcon-removebg-preview.png"
 import deleteEvent from "../../assets/communityManger/deleteEventIcon-removebg-preview.png"
 import event from "../../assets/communityManger/event.png"
-
 import AddMemberToCohort from "../AddMemberToCohort";
 import AddCohort from "../AddCohort";
 import AddMember from "../AddMemberToCohort";
