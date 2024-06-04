@@ -22,14 +22,6 @@ const AllCohorts = ()=>{
     return (
 
     <div>
-
-        {/*<div className={style.appContainer}>*/}
-        {/*    <button onClick={clearLocalStorage} className={style.clearButton}>*/}
-        {/*        Clear Local Storage*/}
-        {/*    </button>*/}
-        {/*    <Cohort setCohorts={() => {*/}
-        {/*    }}/>*/}
-        {/*</div>*/}
         {
             isOpen ? (
                 <FontAwesomeIcon icon={faTimes} onClick={toggleIsOpen} className={style.faTimes}/>
