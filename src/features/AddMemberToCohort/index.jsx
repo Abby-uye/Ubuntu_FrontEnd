@@ -285,6 +285,7 @@ const AddMember = () => {
     }
 
     const handleChange = (event) => {
+        console.log(event.target.value);
         setSelectedCohort(event.target.value);
     };
     console.log(cohorts)

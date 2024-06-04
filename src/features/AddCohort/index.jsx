@@ -25,7 +25,7 @@ const AddCohort = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/ubuntu/cohort/createCohort', {
                 cohortNumber: cohorts.cohortNumber,
