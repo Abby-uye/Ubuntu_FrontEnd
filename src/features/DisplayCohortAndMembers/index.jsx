@@ -53,7 +53,7 @@ const DisplayCohortAndMembers =()=>{
             ...prevState,
             [cohort]: !prevState[cohort],
         }));
-        getAllStudentsBy(cohorts[cohort].cohortNumber)
+        getAllStudentsBy(cohorts[cohort].cohortNumber);
         console.log(students);
     };
 
@@ -70,12 +70,19 @@ const DisplayCohortAndMembers =()=>{
                     </p>
                     {visibleCohorts[cohort] && (
                         <div className={styles.memberList}>
-                            {students.map((member, index) => (
-                                <p key={index}
+                            {students.map((student, index) => (
+                                student.eventState === "ACTIVATED" ?  (
+                                    <p key={index}
                                    className={styles.memberItem}
-                                   onClick={() => handleMemberClick(cohorts[cohort].cohortName, member)}
-                                >{member}</p>
-                            ))}
+                                   onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}
+                                >{student.email}</p>
+                                ):(
+                                    <p key={index}
+                                    style={{color: "red"}}
+                                    className={styles.memberItem}
+                                    onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}
+                                 >{student.email}</p>
+                                )))}
                         </div>
                     )}
                 </div>

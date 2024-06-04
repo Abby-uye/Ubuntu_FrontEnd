@@ -19,3 +19,8 @@
 style.viewAllPost{
     width: 100px;
 }
+
+.viewAllPost > div > img {
+    width: 100%;
+    height: 45vh;
+}
