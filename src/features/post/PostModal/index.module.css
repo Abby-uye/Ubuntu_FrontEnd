@@ -1,0 +1,77 @@
+/*.modalBackground{*/
+/*    width: 500px;*/
+/*    height: 300vh;*/
+/*    background-color: whitesmoke;*/
+/*    position: fixed;*/
+/*    display: flex;*/
+/*    margin-bottom: 20px;*/
+
+/*}*/
+
+.modalContainer{
+    width: 700px;
+    height: 450px;
+    border-radius: 12px;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 100px;
+    padding: 25px;
+    position: fixed;
+
+
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form > input {
+    border: 1px solid #464343;
+    background-color: whitesmoke;
+    height: 70px;
+    outline: none;
+    font-size: 18px;
+    font-family: lato, serif;
+;
+}
+
+
+
+.form > button {
+    border: none;
+    width: 10%;
+    background-color: #FF2E2E;
+    color: white;
+}
+
+.form > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form > div > button{
+    border: none;
+    background-color: #FF2E2E;
+    color: white;
+    width: 70px;
+    font-family: lato, serif;
+    font-weight: bolder;
+    font-size: 17px;
+    border-radius: 10px;
+
+}
+
+.textArea{
+    height: 270px;
+    outline: none;
+    border: 2px #FF2E2E;
+    font-family: lato, serif;
+    font-size: 20px;
+}
+.faTimes{
+    margin-left:670px;
+}

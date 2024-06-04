@@ -37,7 +37,7 @@ export const Routes = [
     {
         path: "/addCohort",
         element: <AddCohort/>
-    }, {
+    },{
         path: "/addMember",
         element: <AddMemberToCohort/>
     },
