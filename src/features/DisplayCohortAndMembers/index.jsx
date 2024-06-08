@@ -8,7 +8,7 @@ const DisplayCohortAndMembers =()=>{
 
     const [cohorts, setCohorts] = useState({});
     const [students, setStudent] = useState([]);
-    const [visibleCohorts, setVisibleCohorts] = useState({});
+    const [newCohort, setCohort] = useState();
     const [selectedUserProfile, setSelectedUserProfile] = useState(null);
 
     const getAllStudentsBy = async (cohortNumber) => {
@@ -16,6 +16,7 @@ const DisplayCohortAndMembers =()=>{
             const response = await axios.get(BACKEND_USER_BASE_URL+"/cohort/"+cohortNumber);
             console.log(response);
             if(response.request.status === 200){
+                setStudent([])
                 setStudent(response.data);
             }else{
                 setStudent([]);
@@ -27,7 +28,6 @@ const DisplayCohortAndMembers =()=>{
     }
 
     useEffect(() => {
-
         const fetchCohorts = async () => {
             try{
                 const response = await axios.get(BACKEND_COHORT_BASE_URL+"/findAllCohort");
@@ -49,12 +49,13 @@ const DisplayCohortAndMembers =()=>{
     }, []);
 
     const handleToggleVisibility = (cohort) => {
-        setVisibleCohorts(prevState => ({
-            ...prevState,
-            [cohort]: !prevState[cohort],
-        }));
-        getAllStudentsBy(cohorts[cohort].cohortNumber);
-        console.log(students);
+        if (newCohort === cohort) {
+            setCohort(null);
+            setStudent([]);
+        } else {
+            setCohort(cohort);
+            getAllStudentsBy(cohorts[cohort].cohortNumber);
+        }
     };
 
     const handleMemberClick = (cohort, member) => {
@@ -68,28 +69,22 @@ const DisplayCohortAndMembers =()=>{
                     <p onClick={() => handleToggleVisibility(cohort)} className={styles.cohortName}>
                         {cohorts[cohort].cohortName}
                     </p>
-                    {visibleCohorts[cohort] && (
+                    {newCohort === cohort && (
                         <div className={styles.memberList}>
                             {students.map((student, index) => (
-                                student.accountState === "ACTIVATED" ?  (
-                                    <p key={index}
-                                   className={styles.memberItem}
-                                   onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}
-                                >{student.email}</p>
-                                ):(
-                                    <p key={index}
-                                    style={{color: "red"}}
-                                    className={styles.memberItem}
-                                    onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}
-                                 >{student.email}</p>
-                                )))}
+                                     <p key={index}
+                                     style={{ color: student.accountState === "ACTIVATED" ? "inherit" : "red" }}
+                                     className={styles.memberItem}
+                                     onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}
+                                  >{student.email}</p>
+                                ))}
                         </div>
                     )}
                 </div>
             ))}
-            {selectedUserProfile && (
+            {/* {selectedUserProfile && (
                 <UserProfile userProfile={selectedUserProfile} />
-            )}
+            )} */}
         </div>
     );
 };
