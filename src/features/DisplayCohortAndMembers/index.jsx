@@ -71,7 +71,7 @@ const DisplayCohortAndMembers =()=>{
                     {visibleCohorts[cohort] && (
                         <div className={styles.memberList}>
                             {students.map((student, index) => (
-                                student.eventState === "ACTIVATED" ?  (
+                                student.accountState === "ACTIVATED" ?  (
                                     <p key={index}
                                    className={styles.memberItem}
                                    onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}

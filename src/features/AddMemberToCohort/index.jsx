@@ -59,7 +59,7 @@ const AddMember = () => {
                 console.log(response)
                 setAddMemberError("");
                 setForms([{ name: '', email: '' }]);
-                setSelectedCohort('');
+                setSelectedCohort(cohorts[0].cohortNumber);
             } else {
                 setAddMemberError(data.err || "Failed to add members");
             }
@@ -73,15 +73,15 @@ const AddMember = () => {
         const handleGetAllCohorts = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/ubuntu/cohort/findAllCohort");
-
                 console.log(response);
                 if (response.request.status === 200) {
                     const data = await response.data;
                     setErrorData("");
                     setCohorts(data);
-                    console.log(cohorts);
+                    let defaultCohort = cohorts[0].cohortNumber
+                    setSelectedCohort(defaultCohort)
                 } else {
-                    const errorMessage = await response();
+                    const errorMessage = await response.data.message;
                     setErrorData(JSON.stringify(errorMessage));
                     setCohorts([]);
                 }
@@ -91,7 +91,7 @@ const AddMember = () => {
             }
         };
 
-        handleGetAllCohorts();
+        handleGetAllCohorts().then();
     }, []);
 
     const openModal = () => setShowModal(true);
