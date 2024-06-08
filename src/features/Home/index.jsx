@@ -73,7 +73,7 @@ const Home = () => {
 
             <div className={style.main}>
                 <div className={style.image_div}>
-                    <div style={{paddingTop: "30px"}}>
+                    <div style={{paddingTop: "30px", cursor: 'pointer'}}>
                         <FaHome style={{fill: "black", fontSize: "25px"}}/>
                         <h4  className={style.btnText}
                             onClick={() => handleClick("")}>Home</h4>

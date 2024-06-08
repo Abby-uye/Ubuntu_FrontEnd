@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import styles from "./index.module.css"
+
 
 const ViewAllPost = () => {
     const [posts, setPosts] = useState([]);
@@ -27,9 +28,8 @@ const ViewAllPost = () => {
     }, []);
 
 
-
     return (
-        <div className={styles.viewAllPost} >
+        <div>
             {posts.length > 0 ? (
                 posts.map((post, index) => (
                     <div key={index}>
@@ -37,7 +37,7 @@ const ViewAllPost = () => {
                         <p>{post.body}</p>
 
                         <div className={styles.likeAndComment}>
-                           <button className={styles.theButton}>Like</button>
+                            <button className={styles.theButton}>Like</button>
                             <button className={styles.theButton}>Comment</button>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ const ViewAllPost = () => {
             )}
             {serverError && <span>{serverError}</span>}
         </div>
-    );
+    )
 };
 
 export default ViewAllPost;

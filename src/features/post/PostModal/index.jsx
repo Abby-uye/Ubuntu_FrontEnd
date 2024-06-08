@@ -4,9 +4,8 @@ import {useState, useRef, useEffect} from 'react';
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
-import {BACKEND_POST_BASE_URL} from "../../../ApiUtils"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 
 const PostModal = ({closeModal, openFlow}) => {
@@ -53,7 +52,7 @@ const PostModal = ({closeModal, openFlow}) => {
             form_data.append("image", file);
             form_data.append("userId", userId);
             try{
-                var response = await axios.post(BACKEND_POST_BASE_URL, form_data);
+                var response = await axios.post( "http://localhost:8080/ubuntu/post", form_data);
                 if (response.status === 201){
                     alert("Post created successfully with id of "+ response.data.id)
                 }else {
@@ -73,7 +72,8 @@ const PostModal = ({closeModal, openFlow}) => {
 return(
         <div className={style.modalBackground}>
             <div className={style.modalContainer}>
-                <form className={style.form} onSubmit={handleSubmit}>
+                <
+                    form className={style.form} onSubmit={handleSubmit}>
                     <div className={style.faTimes}>
                     <FontAwesomeIcon  onClick={closeModalFunc} icon={faTimes}/>
                     </div>

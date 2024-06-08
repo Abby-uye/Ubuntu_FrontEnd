@@ -16,7 +16,6 @@ import AddEvent from "../AddEvent";
 import AllEvent from "../AllEvents";
 
 const CommunityManagerPage = () => {
-
     function changeBackgroundOnOver(e) {
         e.target.style.backgroundColor = "#007bff"
     }
