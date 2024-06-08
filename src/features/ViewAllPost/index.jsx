@@ -145,7 +145,7 @@ const ViewAllPost = () => {
                         {post.image && <img src={post.image} alt="event"/>}
                         <div className={styles.likeAndComment}>
                          <button onClick={() => handleLikeBtn(post.id)} className={styles.theButton}>
-                            {post.likes && userHasLikePost(post.likes) && userLikePost(post.likes) ? <FcLike/> : <FcDislike/>} {getNumberOfLikes(post.likes)}
+                            {post.likes && userHasLikePost(post.likes) && userLikePost(post.likes) ? <FcLike size={"20px"}/> : <FcDislike size={"20px"}/>} {getNumberOfLikes(post.likes)}
                         </button>
                             <button className={styles.theButton} onClick={() => openComment(post.id)}>Comment</button>
                         </div>
