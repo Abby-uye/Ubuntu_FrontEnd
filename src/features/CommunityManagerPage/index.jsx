@@ -6,6 +6,7 @@ import addEvent from "../../assets/communityManger/addEventIcon-removebg-preview
 import updateEvent from "../../assets/communityManger/updateImageIcon-removebg-preview.png"
 import deleteEvent from "../../assets/communityManger/deleteEventIcon-removebg-preview.png"
 import event from "../../assets/communityManger/event.png"
+import AddMemberToCohort from "../AddMemberToCohort";
 import AddCohort from "../AddCohort";
 import AddMember from "../AddMemberToCohort";
 import {MdOutlinePostAdd} from "react-icons/md";
@@ -66,7 +67,7 @@ const CommunityManagerPage = () => {
                     <div className={style.deleteEvent}>
                         <img src={deleteEvent} alt={"deleteEvent"} className={style.deleteEventImage}/>
                         <button className={style.communtityButton}>Delete Event</button>
-                        
+
                     </div>
 
                     <div className={style.chat}>

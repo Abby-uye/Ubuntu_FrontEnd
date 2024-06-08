@@ -64,7 +64,7 @@ const AddEvent = () => {
 
             console.log(formData)
 
-            const response = await axios.post('http://localhost:8080/app/communityManger/createEvent', formData);
+            const response = await axios.post('http://localhost:8080/ubuntu/chatroom/createEvent', formData);
 
             if (response.status === 200) {
                 console.log(response)
