@@ -149,31 +149,32 @@ const ViewAllPost = () => {
                         </button>
                             <button className={styles.theButton} onClick={() => openComment(post.id)}>Comment</button>
                         </div>
-                        <div className={styles.comments}>
-                        {postId === post.id && isComment && comments.map((comment, index) => {
-                            return(
-                            <div key={index} className={styles.comment}>
-                                <FaRegUserCircle size={"25px"}/>
-                                <div className={styles.userDetails}>
-                                    <p>{comment.userEmail}</p>
-                                    <p>{comment.content}</p>
+                        {postId === post.id && isComment && (
+                                <div className={styles.comments}>
+                                    {comments.map((comment, index) => (
+                                        <div key={index} className={styles.comment}>
+                                            <FaRegUserCircle size={"25px"} />
+                                            <div className={styles.userDetails}>
+                                                <p>{comment.userEmail}</p>
+                                                <p>{comment.content}</p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            </div>
-                        )
-                    })} 
-                    </div>
+                            )}
                     {postId === post.id && isComment && (
-                            <div style={{display:"flex"}}>
+                            <form style={{display:"flex"}} onSubmit={handleComment}>
                                 <input
                                 type="text"
+                                required
                                 onChange={(event) => setComment(event.target.value)}
                                 placeholder="Write A Comment"
                                 className={styles.input}
                                 />
-                                <button onClick={handleComment} className={styles.btn}>
+                                <button type="submit" className={styles.btn}>
                                     <FontAwesomeIcon icon={faPaperPlane}/>
                                 </button>
-                            </div>
+                            </form>
                     )}
                     </div>
                 ))
