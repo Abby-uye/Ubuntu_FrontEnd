@@ -1,25 +1,45 @@
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
-// import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import styles from "../../ViewAllPost/index.module.css";
+import {useNavigate} from "react-router-dom";
 
 
 const AllUserQuestions = () => {
+    const navigate = useNavigate()
 
     const [userQuestion, setUserQuestions] = useState([{
         userId: ""
     }])
-    let userToken = localStorage.getItem("token")
-    userToken = jwtDecode(userToken)
-    let userId = userToken.sender_email
+    const userToken = localStorage.getItem("token");
+    console.log("userToken "+userToken);
+    const decodeToken = jwtDecode(userToken);
+    let userId = decodeToken.sender_email;
+    console.log("user id "+userId);
+
+    // const decodeToken = jwtDecode(token);
+    //
+    // token = decodeToken.recipient_email;
+    //
+    // console.log(decodeToken);
+    //
+    // setUserId(token);
+    //
+    // console.log(decodeToken.recipient_email);
+    //
+    // console.log(userId);
+    //
+
+
+
+
     useEffect(() => {
         const handleGetUserQuestions = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/ubuntu/question/getUserQuestion", {
                     userId: userId
                 });
-                console.log(response)
+                console.log(response.data)
                 if (response.status === 200) {
                     const data = await response.data
                     setUserQuestions(data);
@@ -29,7 +49,6 @@ const AllUserQuestions = () => {
                 console.log("temporarily unavailable");
             }
         };
-
         handleGetUserQuestions()
     }, []);
 
@@ -49,7 +68,6 @@ const AllUserQuestions = () => {
             ) : (
                 <p>No Question Available</p>
             )}
-
         </div>
     )
 }

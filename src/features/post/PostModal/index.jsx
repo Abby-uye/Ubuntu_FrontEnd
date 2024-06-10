@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {BACKEND_POST_BASE_URL} from "../../../ApiUtils";
 
 
 const PostModal = ({closeModal, openFlow}) => {

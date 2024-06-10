@@ -116,6 +116,7 @@ const AddEvent = () => {
                             className={style.description}
                             placeholder="Enter Event Description"
 
+
                         />
                         <input
                             type="date"

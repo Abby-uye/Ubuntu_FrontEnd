@@ -35,9 +35,10 @@ const ViewAllPost = () => {
         const handleGetAllPost = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/ubuntu/post/all_post");
-                // console.log(response)
+
+                console.log(response)
                 if (response.status === 200) {
-                    const data = await response.data.posts
+                    const data = await response.data
                     console.log(data)
                     setPosts(data);
                     setServerError("");

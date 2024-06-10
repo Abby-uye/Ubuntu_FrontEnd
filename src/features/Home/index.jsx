@@ -3,11 +3,10 @@ import style from "./index.module.css"
 import {FaHome, FaSearch} from "react-icons/fa";
 import {MdOutlinePostAdd} from "react-icons/md";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
-import {data} from "./data"
 import { useEffect, useState } from "react";
 import PostModal from "../post/PostModal";
 import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import ViewAllPost from "../ViewAllPost";
 import logo from "../../assets/community.jpeg"
 
@@ -48,9 +47,6 @@ const Home = () => {
         e.target.style.backgroundColor = "#007bff"
     }
 
-    function changeBackgroundOutOver(e) {
-        e.target.style.backgroundColor = "#a6e1ec"
-    }
 
     return (
         <div className={style.mainboard}>
@@ -79,22 +75,26 @@ const Home = () => {
                             onClick={() => handleClick("")}>Home</h4>
                     </div>
 
-                    <div>
+                    <div style={{cursor:'pointer'}}>
                         <MdOutlinePostAdd style={{fill: "black", fontSize: "25px"}}/>
                         <h4  className={style.btnText}
                             onClick={(event) => modalFunc(event)}>Post</h4>
                             {openModal && <PostModal closeModal={setOpenModal} openFlow={openOverFlow}/>}
                     </div>
 
-                    <div>
+                    <div style={{cursor:'pointer'}}>
                         <IoIosChatboxes style={{fill: "black", fontSize: "25px"}}/>
                         <h4  className={style.btnText}
                             onClick={() => handleClick("/chat")}>Chat</h4>
                     </div>
 
-                    <div>
+                    <div style={{cursor:'pointer'}}>
                         <MdOutlinePostAdd style={{fill: "black", fontSize: "25px"}}/>
                         <h4 className={style.btnText} >Event</h4>
+                    </div>
+                    <div style={{cursor:'pointer'}}>
+                        <MdOutlinePostAdd style={{fill: "black", fontSize: "25px"}}/>
+                        <h4 className={style.btnText} onClick={()=>handleClick("/questionsHall")}>Q and A Hall</h4>
                     </div>
                 </div>
 

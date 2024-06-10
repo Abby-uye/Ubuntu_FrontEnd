@@ -64,7 +64,7 @@ const AskQuestion = () => {
                     <label>Title</label>
                     <input className={style.questionTitle} onChange={handleChange} name={"title"}/>
                     <label>Details Of Your Problem</label>
-                    <textarea className={style.questionDescriptions} onChange={handleChange} name={"body"}/>
+                    <textarea className={style.questionDescriptions} onChange={handleChange} name={"body"}  minLength={4}/>
                     <button type={"submit"} className={style.submitButton}>Submit</button>
                 </form>
             </Modal>

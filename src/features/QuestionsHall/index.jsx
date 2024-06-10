@@ -1,24 +1,19 @@
 import style from "./index.module.css"
 import {IoIosNotifications} from "react-icons/io";
-import React, {useRef, useState} from "react";
-import FilledButton from "../../components/reuseables/FilledButton";
-import axios from "axios";
-import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import AskQuestion from "./AskQuestion";
 import AllQuestions from "./AllQuestions";
-import {jwtDecode} from "jwt-decode";
+
 
 const QuestionsHall = () => {
     const navigate = useNavigate()
 
-    // const [userQuestions, setUserQuestion] = useState({
-    //     userId: ""
-    // })
 
-    const moveToHome = async () => {
-        navigate("/home")
-    }
+
+    const handleClick = (e) => {
+        navigate(e)
+    };
+
 
     // let userToken = localStorage.getItem("token")
     // userToken = jwtDecode(userToken)
@@ -53,8 +48,8 @@ const QuestionsHall = () => {
 
             <div className={style.allButtons}>
                 <div className={style.buttons}>
-                    <button style={{color: "black", backgroundColor: ""}} onClick={moveToHome}> Home</button>
-                    <button style={{color: "white", backgroundColor: "rgba(255, 0, 0, 0.92)"}}>My Questions</button>
+                    <button style={{color: "black", backgroundColor: ""}} onClick={()=>handleClick("/home")}> Home</button>
+                    <button style={{color: "white", backgroundColor: "rgba(255, 0, 0, 0.92)"}} onClick={()=>handleClick("/allUserQuestions")}>My Questions</button>
                 </div>
             </div>
 
