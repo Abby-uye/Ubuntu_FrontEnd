@@ -22,15 +22,14 @@ const AllEvent = () => {
     useEffect(() => {
         const handleGetAllEvents = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/app/communityManger/findAllEvent");
-                console.log("i got here1")
+                const response = await axios.post("http://localhost:8080/ubuntu/chatroom/getAllEvents");
                 console.log(response);
                 if (response.status === 200) {
                     const data = await response.data;
                     console.log("data" + data)
                     setEvents(data)
-                    setFile(response.data.eventImage)
-                    console.log(events);
+                    // setFile(response.data.eventImage)
+                    console.log(response.data);
                 } else {
                     const errorMessage = response.data.message;
                     console.log(errorMessage)
@@ -60,7 +59,7 @@ const AllEvent = () => {
                                     <h3>{newEvent.title}</h3>
                                     <h4>{newEvent.eventDate}</h4>
                                     <p>{newEvent.description}</p>
-                                    {/*{newEvent.eventImage && <img src={newEvent.eventImage} alt="event"/>}*/}
+                                    {newEvent.eventImage && <img src={newEvent.eventImage} alt="event"/>}
                                     <img src={newEvent.eventImage} alt="event"/>
                                 </div>
                             ))}

@@ -25,7 +25,7 @@ const AddCohort = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/ubuntu/cohort/createCohort', {
                 cohortNumber: cohorts.cohortNumber,
@@ -107,10 +107,10 @@ const AddCohort = () => {
                         {(Array.isArray(cohorts) ? cohorts : []).map((cohort, index) => (
                             <div className={style.cohortdetails}>
                                 <p key={index}>
-                                    {cohort.cohortNumber}
+                                    {cohort.cohortName}
                                 </p>
                                 <p key={index}>
-                                    {cohort.cohortName}
+                                    {cohort.cohortNumber}
                                 </p>
                             </div>
 
@@ -120,18 +120,17 @@ const AddCohort = () => {
                     <form onSubmit={handleSubmit} className={style.formInfo}>
                         <input
                             type="number"
-                            name={"cohortName"}
+                            name={"cohortNumber"}
                             onChange={handleChange}
                             placeholder="Enter new cohort number"
-
                         />
                         <input
                             type="text"
-                            name={"cohortNumber"}
+                            name={"cohortName"}
                             onChange={handleChange}
                             placeholder="Enter new cohort name"
                         />
-                        <FilledButton textColor={"white"} backgroundColor={"#671BC7"} text={"Add"}/>
+                        <FilledButton textColor={"white"} backgroundColor={"rgba(255, 0, 0, 0.92)"} text={"Add"}/>
                     </form>
                 </div>
             </Modal>

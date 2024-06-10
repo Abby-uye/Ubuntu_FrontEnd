@@ -3,7 +3,6 @@
     flex-direction: row;
     justify-content: space-between;
     padding-top: 30px;
-
 }
 
 .theButton{
@@ -15,4 +14,65 @@
     font-family: lato, serif;
     color: whitesmoke;
     font-weight: bold;
+}
+
+.likeBtn{
+    size: 20px;
+    background-color: #007bff;
+}
+
+style.viewAllPost{
+    width: 100px;
+}
+
+.viewAllPost > div > img {
+    width: 100%;
+    height: 45vh;
+}
+
+.input{
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #FF2E2E;
+    outline: none;
+    color: #38516D;
+}
+
+.btn{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 0 8px 8px 0;
+    border: 1px solid #ccc;
+    background-color: #38516D;
+    color: #fff;
+    cursor: pointer;
+}
+
+.comments{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    width:100%;
+    height: 25vh;
+    overflow: scroll;
+}
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    gap : 20px;    
+}
+
+.userDetails > p{
+    /*margin: 0;*/
+    margin-top: 2px;
+}
+
+.userDetails {
+    border: 2px solid antiquewhite;
+    border-radius: 8px 0 0 8px;
+    display: flex;
+    flex-direction: column;    
 }
