@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 // import ChatHistory from '../ChatHistory';
 import styles from './index.module.css';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
-const { BACKEND_MESSAGE_BASE_URL } = require("../../ApiUtils")
+import {jwtDecode} from 'jwt-decode';
+import {useNavigate} from 'react-router-dom';
+
+const {BACKEND_MESSAGE_BASE_URL} = require("../../ApiUtils")
 
 
-const RecentlyChattedUsers = ({ selectedUser }) => {
+const RecentlyChattedUsers = ({selectedUser}) => {
     const nav = useNavigate()
     const [users, setUsers] = useState([]);
     const [userId, setUserId] = useState("");
@@ -17,8 +18,9 @@ const RecentlyChattedUsers = ({ selectedUser }) => {
 
         const fetchData = async () => {
             var token = localStorage.getItem("token");
-            if(!token) nav("/login");
-            
+            console.log("token"+token)
+            if (!token) nav("/login");
+
             const decodeToken = jwtDecode(token);
 
             token = decodeToken.recipient_email;
@@ -31,10 +33,10 @@ const RecentlyChattedUsers = ({ selectedUser }) => {
 
             console.log(userId);
 
-            try{
-               const response =  await axios.get(BACKEND_MESSAGE_BASE_URL+"/getAllRecipient/"+token)
+            try {
+                const response = await axios.get(BACKEND_MESSAGE_BASE_URL + "/getAllRecipient/" + token)
                 setUsers(response.data);
-            }catch(error){
+            } catch (error) {
                 console.log(error)
             }
         }
@@ -46,7 +48,7 @@ const RecentlyChattedUsers = ({ selectedUser }) => {
         selectedUser(email);
     }
 
-    
+
     return (
         <div className={styles.chatContainer}>
             <h2>Recently Chatted Users</h2>

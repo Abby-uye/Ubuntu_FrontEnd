@@ -4,9 +4,9 @@ import {useState, useRef, useEffect} from 'react';
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
-import {BACKEND_POST_BASE_URL} from "../../../ApiUtils"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {BACKEND_POST_BASE_URL} from "../../../ApiUtils";
 
 
 const PostModal = ({closeModal, openFlow}) => {
@@ -73,7 +73,8 @@ const PostModal = ({closeModal, openFlow}) => {
 return(
         <div className={style.modalBackground}>
             <div className={style.modalContainer}>
-                <form className={style.form} onSubmit={handleSubmit}>
+                <
+                    form className={style.form} onSubmit={handleSubmit}>
                     <div className={style.faTimes}>
                     <FontAwesomeIcon  onClick={closeModalFunc} icon={faTimes}/>
                     </div>

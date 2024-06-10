@@ -1,0 +1,50 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.miniMain{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    padding: 5px 6px 0 14px;
+    font-size: 24px;
+}
+.questionTitle {
+    width: 60%;
+    height: 7vh;
+    border-radius: 4px;
+    outline: none;
+    border: white;
+}
+.questionDescriptions{
+    width: 80%;
+    height: 10vh;
+    border-radius: 4px;
+    outline: none;
+    border: white;
+
+
+}
+.submitButton{
+    width: 150px;
+    height: 6vh;
+    border: 0;
+    border-radius: 4px;
+    background-color: rgba(255, 0, 0, 0.92);
+    font-size: 18px;
+    font-weight: 400;
+
+}
+.communtityButton{
+    width: 100px;
+    height: 12vh;
+    border: 0;
+    border-radius: 60px;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: rgba(255, 0, 0, 0.92);
+}
