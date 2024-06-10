@@ -33,29 +33,21 @@ const AddMember = () => {
             return;
         }
 
-
-        const dataToSubmit = forms.map(form => ({
-            fullName: form.name,
-            email: form.email,
-        }));
+        const dataToSubmit = new Map();
+        forms.forEach((form) => {
+            dataToSubmit.set(form.email, form.name)
+        })
 
         const payload = {
             members: dataToSubmit,
             cohortNumber: selectedCohort,
         }
-        console.log(dataToSubmit)
-        console.log(payload)
 
         try {
-            const response = await fetch("http://localhost:8080/api/v1/community_manager/add_student", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-            const data = await response.json();
-            if (response.ok) {
+            const response = await axios.post("http://localhost:8080/api/v1/community_manager/add_student", payload);
+            const data = await response;
+            console.log(data);
+            if (response.status === 202) {
                 console.log(response)
                 setAddMemberError("");
                 setForms([{ name: '', email: '' }]);
