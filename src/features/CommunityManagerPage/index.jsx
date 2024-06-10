@@ -10,13 +10,19 @@ import AddMemberToCohort from "../AddMemberToCohort";
 import AddCohort from "../AddCohort";
 import AddMember from "../AddMemberToCohort";
 import {MdOutlinePostAdd} from "react-icons/md";
-import React from "react";
+import React, {useState} from "react";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import ViewAllPost from "../ViewAllPost";
 import AddEvent from "../AddEvent";
 import AllEvent from "../AllEvents";
-
+import RemoveStudent     from "../RemoveStudent";
 const CommunityManagerPage = () => {
+    const [showRemoveStudent, setShowRemoveStudent] = useState(false);
+
+    const handleRemoveStudent = () => {
+        setShowRemoveStudent(true);
+    };
+
     function changeBackgroundOnOver(e) {
         e.target.style.backgroundColor = "#007bff"
     }
@@ -48,7 +54,7 @@ const CommunityManagerPage = () => {
 
                     <div className={style.removeStudent}>
                         <img src={removeStudent} alt={"removeStudent"} className={style.removeStudentImage}/>
-                        <button className={style.communtityButton}>Remove Student</button>
+                        <RemoveStudent/>
 
                     </div>
 

@@ -33,33 +33,25 @@ const AddMember = () => {
             return;
         }
 
-
-        const dataToSubmit = forms.map(form => ({
-            fullName: form.name,
-            email: form.email,
-        }));
+        const dataToSubmit = new Map();
+        forms.forEach((form) => {
+            dataToSubmit.set(form.email, form.name)
+        })
 
         const payload = {
             members: dataToSubmit,
             cohortNumber: selectedCohort,
         }
-        console.log(dataToSubmit)
-        console.log(payload)
 
         try {
-            const response = await fetch("http://localhost:8080/api/v1/community_manager/add_student", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-            const data = await response.json();
-            if (response.ok) {
+            const response = await axios.post("http://localhost:8080/api/v1/community_manager/add_student", payload);
+            const data = await response;
+            console.log(data);
+            if (response.status === 202) {
                 console.log(response)
                 setAddMemberError("");
                 setForms([{ name: '', email: '' }]);
-                setSelectedCohort('');
+                setSelectedCohort(cohorts[0].cohortNumber);
             } else {
                 setAddMemberError(data.err || "Failed to add members");
             }
@@ -73,15 +65,15 @@ const AddMember = () => {
         const handleGetAllCohorts = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/ubuntu/cohort/findAllCohort");
-
                 console.log(response);
                 if (response.request.status === 200) {
                     const data = await response.data;
                     setErrorData("");
                     setCohorts(data);
-                    console.log(cohorts);
+                    let defaultCohort = cohorts[0].cohortNumber
+                    setSelectedCohort(defaultCohort)
                 } else {
-                    const errorMessage = await response();
+                    const errorMessage = await response.data.message;
                     setErrorData(JSON.stringify(errorMessage));
                     setCohorts([]);
                 }
@@ -91,7 +83,7 @@ const AddMember = () => {
             }
         };
 
-        handleGetAllCohorts();
+        handleGetAllCohorts().then();
     }, []);
 
     const openModal = () => setShowModal(true);
@@ -102,6 +94,7 @@ const AddMember = () => {
     }
 
     const handleChange = (event) => {
+        console.log(event.target.value);
         setSelectedCohort(event.target.value);
     };
     console.log(cohorts)
