@@ -35,10 +35,14 @@ const ViewAllPost = () => {
         const handleGetAllPost = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/ubuntu/post/all_post");
+
+                console.log(response)
                 if (response.status === 200) {
-                    const data = await response.data;
+                    const data = await response.data
+                    console.log(data)
                     setPosts(data);
                     setServerError("");
+                    // console.log(posts.length);
                 }
             } catch (error) {
                 setServerError("temporarily unavailable");
@@ -74,7 +78,7 @@ const ViewAllPost = () => {
         }
     }
 
-   
+
 
     const getNumberOfLikes = (likes) => {
         likes = new Map(Object.entries(likes));
@@ -183,7 +187,7 @@ const ViewAllPost = () => {
             )}
             {serverError && <span>{serverError}</span>}
         </div>
-    );
+    )
 };
 
 export default ViewAllPost;
