@@ -12,17 +12,16 @@ export const useFetch = ({ url, send, recipient }) => {
             async function(){
                 const payload = {
                     sendId : send,
-                    recipient: recipient,
+                    recipientId: recipient,
                 }
                 try{
                     const response = await axios.post(BACKEND_MESSAGE_BASE_URL+url, payload)
+                    console.log("Fetch Message -> ", response)
                     setResponseData(response.data);
                 }catch(error){
                     setError(error);
                 }
             })()
     }, [url]);
-
     return {responseData, error};
-
 }

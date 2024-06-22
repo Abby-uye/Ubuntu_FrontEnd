@@ -1,38 +1,53 @@
-import { useFetch } from "../customHook/useFetch";
-import { useSocket } from "../customHook/useSocket";
-import styles from "./index.module.css"
+import { BACKEND_MESSAGE_BASE_URL } from "../../ApiUtils";
+import { useState, useEffect} from "react";
+import axios from "axios";
+import styles from "./index.module.css";
 
-const ChatHistory = ({selectedUser, setSendData, username}) => {
 
-    let room = username + "_" + selectedUser;
+const ChatHistory = ({selectedUser, socket, username}) => {
+const [responseData, setResponseData] = useState();
+const [error, setError] = useState();
 
-    const [socketResponse, isConnected, sendData] = useSocket(room, username);
+useEffect(() => {
+    const messageListener = (data) => {
+        setResponseData((prevMessages) => [...prevMessages, data]);
+    };
 
-    console.log(isConnected);
-    console.log(sendData);
-    console.log(socketResponse);
+    socket.on("message", messageListener);
 
-    const [responseData, error] = useFetch("/messages", username, selectedUser);
+    return () => {
+        socket.off("message", messageListener);
+    };
+}, [socket]);
 
-    console.log(error)
+useEffect(() => {
+    const getMessage = async() => {
+        const payload = {sendId: username, recipientId: selectedUser};
+        try{
+            const response = await axios.post(BACKEND_MESSAGE_BASE_URL+"/messages", payload);
+            setResponseData(response.data);
+        }catch(error){
+            console.log(error);
+            setError(error);
+        }
+    }
+getMessage();
+}, []);
 
-    console.log(responseData);
 
-    setSendData(sendData);
-
-    return (
-        <div className={styles.chatHistory}>
-            {responseData && responseData.map((msg, index) => (
-                <div
-                    key={index}
-                    className={msg.type === 'sent' ? styles.sentMessage : styles.receivedMessage}
+return (
+    <div className={styles.chatHistory}>
+        {responseData && responseData.map((msg, index) => (
+            <div
+                key={index}
+                className={msg.type === 'sent' ? styles.sentMessage : styles.receivedMessage}
                 >
-                    <strong>{msg.sendId}:</strong> {msg.message}
+                <strong>{msg.sendId}:</strong> {msg.message}
 
-                    <div className={styles.timestamp}>
-                        {new Date().toLocaleTimeString()}
-                    </div>
+                <div className={styles.timestamp}>
+                    {new Date().toLocaleTimeString()}
                 </div>
+            </div>
             ))}
         </div>
     );

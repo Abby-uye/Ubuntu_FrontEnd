@@ -24,9 +24,8 @@ const Home = () => {
 
 
     const openModalFunction = () => {
-        setOpenModal(true)
-        hidOverFlow()
-        console.log("hello");
+        setOpenModal(true);
+        hidOverFlow();
     };
 
     const hidOverFlow = () => {document.body.style.overflow = "hidden";}

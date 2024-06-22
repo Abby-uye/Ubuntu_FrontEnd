@@ -30,11 +30,11 @@ export const useSocket = (room, username) =>  {
         console.log("Inside useEffect. Room:", room, "Username:", username);
 
         const newSocket = io(SOCKET_BASE_URL, {
-            reconnection: false,
             query: `username=${username}&room=${room}`
         });
 
         newSocket.on("connect", () => setConnected(true));
+        
         newSocket.on("read_message", (response) => {
             setSocketResponse({
                 room: response.chatMessageId,

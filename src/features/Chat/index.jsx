@@ -11,13 +11,12 @@ import { BACKEND_CHATROOM_BASE_URL } from "../../ApiUtils";
 import { jwtDecode } from "jwt-decode";
 
 
-const Chat = ()=> {
+const Chat = ({socket})=> {
     const navigate = useNavigate();
     const [messages,setMessages] = useState([]);
     const [selectedUser, setSelectedUser] = useState("");
     const [openTextArea, setOpenTextArea] = useState(false);
     const [userEmail, setUserEmail] = useState();
-    const [sendData, setSendData] = useState(null);
     var email = "";
 
     
@@ -28,6 +27,9 @@ const Chat = ()=> {
         const decodedObject = jwtDecode(localStorage.getItem("token"));
         email = decodedObject.recipient_email;
         setUserEmail(email);
+        if(socket){
+        socket.emit("register", email);
+        }
     }, []);
 
     useEffect(() => {
@@ -74,9 +76,14 @@ const Chat = ()=> {
 
     const handleSendMessage = (message) => {
         if(message !== ""){
-            sendData({
-                content : message
-            })
+            if(socket) {
+                console.log("Handle Send Message ", socket)
+                socket.emit("send_message", {
+                    sendId: userEmail, 
+                    recipientId: selectedUser,
+                    content: message
+                });
+            }
         }
         addMessageToList({
             content: message,
@@ -85,7 +92,7 @@ const Chat = ()=> {
     };
 
     const addMessageToList = (val) => {
-        if (val.room == "") return;
+        if (val.room === "") return;
         setMessages([...messages, val]);
       };
 
@@ -98,7 +105,7 @@ const Chat = ()=> {
         </div>
         {openTextArea && 
         <div className={style.messageCont}>
-            {/* <ChatHistory selectedUser={selectedUser} sendData={setSendData} username={userEmail}/>  */}
+            <ChatHistory selectedUser={selectedUser} socket={socket} username={userEmail}/> 
             <ChatInput onSend={handleSendMessage}/>
             </div>}
             <ToastContainer/>

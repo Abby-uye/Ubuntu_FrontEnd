@@ -1,4 +1,4 @@
-export const SOCKET_BASE_URL = "http://192.168/0/10:8081";
+export const SOCKET_BASE_URL = "http://localhost:8081";
 export const BACKEND_MESSAGE_BASE_URL = "http://localhost:8080/ubuntu/chatMessage"
 export const BACKEND_USER_BASE_URL = "http://localhost:8080/ubuntu/user";
 export const BACKEND_COHORT_BASE_URL = "http://localhost:8080/ubuntu/cohort";
