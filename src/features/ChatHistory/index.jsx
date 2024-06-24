@@ -4,15 +4,23 @@ import axios from "axios";
 import styles from "./index.module.css";
 
 
-const ChatHistory = ({selectedUser, socket, username}) => {
-const [responseData, setResponseData] = useState();
+const ChatHistory = ({selectedUser, socket, username, message}) => {
+const [responseData, setResponseData] = useState(null);
 const [error, setError] = useState();
 
-useEffect(() => {
-    const messageListener = (data) => {
-        setResponseData((prevMessages) => [...prevMessages, data]);
-    };
+const messageListener = (data) => {
+    setResponseData((prevMessages) => [...prevMessages, data]);
+};
 
+useEffect(() => {
+    if(responseData === null){
+        setResponseData(message);
+    }
+    messageListener(message);
+}, [message])
+
+
+useEffect(() => {
     socket.on("message", messageListener);
 
     return () => {
@@ -32,7 +40,7 @@ useEffect(() => {
         }
     }
 getMessage();
-}, []);
+}, [selectedUser]);
 
 
 return (

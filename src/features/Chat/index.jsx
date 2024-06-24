@@ -13,7 +13,7 @@ import { jwtDecode } from "jwt-decode";
 
 const Chat = ({socket})=> {
     const navigate = useNavigate();
-    const [messages,setMessages] = useState([]);
+    const [message,setMessage] = useState([]);
     const [selectedUser, setSelectedUser] = useState("");
     const [openTextArea, setOpenTextArea] = useState(false);
     const [userEmail, setUserEmail] = useState();
@@ -39,15 +39,11 @@ const Chat = ({socket})=> {
                 recipient_email: selectedUser,
                 sender_email: userEmail
             };
-
             
             try{
                 const response =  await axios.post(BACKEND_CHATROOM_BASE_URL+"/initialize", payLoad);
 
-                console.log(response);
-
                 if (response.status === 200){
-                    console.log(response);
                     if(response.data.activated){
                         setOpenTextArea(true);
                     }else {
@@ -68,7 +64,6 @@ const Chat = ({socket})=> {
                 console.log(error);
             }
     }
-    console.log(selectedUser);
     if(selectedUser !== "") initializeReuqest();      
     }, [selectedUser]);
 
@@ -84,28 +79,24 @@ const Chat = ({socket})=> {
                     content: message
                 });
             }
+            const obj = {
+                message: message,
+                sendId: userEmail,
+                recipientId: selectedUser
+            }
+            setMessage(obj);
         }
-        addMessageToList({
-            content: message,
-            username: email
-        })
     };
-
-    const addMessageToList = (val) => {
-        if (val.room === "") return;
-        setMessages([...messages, val]);
-      };
 
     return(
         <div className={style.mainCont}>
-
         <div className={style.users}>
             <AllCohorts/>
             <RecentlyChattedUser selectedUser={setSelectedUser}/>
         </div>
         {openTextArea && 
         <div className={style.messageCont}>
-            <ChatHistory selectedUser={selectedUser} socket={socket} username={userEmail}/> 
+            <ChatHistory selectedUser={selectedUser} socket={socket} username={userEmail} message={message}/>
             <ChatInput onSend={handleSendMessage}/>
             </div>}
             <ToastContainer/>
