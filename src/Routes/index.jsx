@@ -1,11 +1,16 @@
 import Chat from "../features/Chat";
 import CohortState from "../features/CohortState";
 import Home from "../features/Home";
-import PostModal from "../features/post/PostModal";
 import AddMemberToCohort from "../features/AddMemberToCohort";
 import CommunityManagerPage from "../features/CommunityManagerPage";
 import Login from "../features/Login";
 import AddCohort from "../features/AddCohort";
+import AddEvent from "../features/AddEvent";
+import AllEvent from "../features/AllEvents";
+import QuestionsHall from "../features/QuestionsHall";
+import AskQuestion from "../features/QuestionsHall/AskQuestion";
+import AllQuestions from "../features/QuestionsHall/AllQuestions";
+import AllUserQuestions from "../features/QuestionsHall/AllUserQuestions";
 
 export const Routes = [
     {
@@ -36,8 +41,31 @@ export const Routes = [
     {
         path: "/addCohort",
         element: <AddCohort/>
-    },{
+    }, {
         path: "/addMember",
         element: <AddMemberToCohort/>
+    },
+    {
+        path: "/addEvent",
+        element: <AddEvent/>
     }
+    ,{
+        path: "/allEvent",
+        element: <AllEvent/>
+    },
+    {
+        path: "/questionsHall",
+        element: <QuestionsHall/>
+    },{
+        path: "/askQuestion",
+        element: <AskQuestion/>
+    },{
+        path: "/allQuestion",
+        element: <AllQuestions/>
+    },{
+        path: "/allUserQuestions",
+        element: <AllUserQuestions/>
+    }
+
+
 ]

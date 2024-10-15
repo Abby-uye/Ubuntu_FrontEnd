@@ -5,25 +5,23 @@ import style from "./index.module.css"
 import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
 import Cohort from "../Cohort";
 const AllCohorts = ()=>{
-const [isOpen,setIsOpen] = useState(false);
-const  toggleIsOpen = ()=>{
-setIsOpen(!isOpen);
-};
+
+    const [isOpen, setIsOpen] = useState(false);
+
+
+    const  toggleIsOpen = ()=>{
+
+        setIsOpen(!isOpen);
+
+    };
     const clearLocalStorage = () => {
         localStorage.clear();
         window.location.reload(); // Reload the page to reflect the changes
     };
-return (
+
+    return (
 
     <div>
-
-        {/*<div className={style.appContainer}>*/}
-        {/*    <button onClick={clearLocalStorage} className={style.clearButton}>*/}
-        {/*        Clear Local Storage*/}
-        {/*    </button>*/}
-        {/*    <Cohort setCohorts={() => {*/}
-        {/*    }}/>*/}
-        {/*</div>*/}
         {
             isOpen ? (
                 <FontAwesomeIcon icon={faTimes} onClick={toggleIsOpen} className={style.faTimes}/>

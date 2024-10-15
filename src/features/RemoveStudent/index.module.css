@@ -1,0 +1,52 @@
+.cohortList{
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.memberList{
+    margin-top: 10px;
+    padding-left: 20px;
+}
+.memberItem{
+    margin: 5px 0;
+    cursor: pointer;
+}
+.cohortName{
+    font-weight: bold;
+    color: #FF2E2E;
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.cohortName:hover {
+    color: #0056b3;
+}
+.getAllCohort{
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.communtityButton{
+    width: 160px;
+    height: 7vh;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 0, 0, 0.92);
+    text-decoration: none;
+    font-family: lato, serif;
+    color: white;
+
+}
+
+.remove{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -1,186 +1,3 @@
-// import {useEffect, useState} from "react";
-// import Modal from "../Modal"
-// import styles from "./index.module.css"
-// import {json} from "react-router-dom";
-//
-//
-// const AddMember = () => {
-//
-//     const [cohorts, setCohorts] = useState([]);
-//     const [selectedCohort, setSelectedCohort] = useState('');
-//     const [errorData, setErrorData] = useState("");
-//     const [addMemberError, setAddMemberError] = useState("");
-//     const [nativeName, setNativeName] = useState('');
-//     const [nativeEmail, setNativeEmail] = useState('');
-//     const [forms, setForms] = useState([{name: '', email: ''}]);
-//
-//
-//     const handleFormChange = (index, event) => {
-//         const updatedForms = forms.map((form, i) =>
-//             i === index ? {...form, [event.target.name]: event.target.value} : form
-//         );
-//         setForms(updatedForms);
-//     };
-//
-//     const addForm = () => {
-//         setForms([...forms, {name: '', email: ''}]);
-//     };
-//
-//     const handleSubmitAllForms = async (event) => {
-//         event.preventDefault();
-//
-//         const dataToSubmit = forms.map(form => ({
-//             name: form.name,
-//             email: form.email,
-//             cohortId: selectedCohort
-//         }));
-//
-//
-//         const handleAddStudent = async (event) => {
-//
-//             event.preventDefault();
-//
-//             const memberData = {
-//                 name: nativeName,
-//                 email: nativeEmail,
-//                 cohortId: selectedCohort
-//             };
-//             const dataToSubmit = forms.map(form => ({
-//                 name: form.name,
-//                 email: form.email,
-//                 cohortId: selectedCohort
-//             }));
-//
-//             try {
-//                 const response = fetch("http://localhost:8080/api/v1/comunityManager/add_student", {
-//                     method: "POST",
-//                     headers: {
-//                         "content-Type": "application/json"
-//                     },
-//                     body: JSON.stringify({dataToSubmit})
-//                 })
-//                 const data = (await response).json()
-//                 if (response.ok) {
-//                     setAddMemberError("")
-//                     setForms([{name: '', email: ''}]);
-//                     setSelectedCohort('');
-//                 } else {
-//                     setAddMemberError(data.err)
-//                 }
-//             } catch (error) {
-//                 console.log("An error occurred ", error)
-//                 setAddMemberError("failed to load cohorts")
-//             }
-//
-//         }
-//
-//
-// // useEffect(()=>{
-// //     const handleGetAllCohorts= async ()=>{
-// //         try {
-// //             const response =  await  fetch("http://localhost:8080/ubuntu/cohort/findAllCohort",{
-// //               method :"Get",
-// //                headers :{
-// //                "content-Type" : "application/json"
-// //            }})
-// //             )
-// //             if(response.ok){
-// //                 const data = await response.json()
-// //                 setErrorData("")
-// //                 setCohorts(data)
-// //             }
-// //             else {
-// //                 const errorMessage = await response.json();
-// //                 setErrorData(JSON.stringify(errorMessage))
-// //                 setCohorts([])
-// //             }
-// //         }
-// //
-// //         catch
-// //             (error)
-// //             console.log("An error occurred ",error)
-// //             setErrorData("failed to load cohorts")
-// //         }
-// //
-// //     }
-// //
-// //   handleGetAllCohorts()
-// //     },[])
-//
-//
-//
-//
-//         const openModal = () => setShowModal(true);
-//         const closeModal = () => setShowModal(false);
-//
-//         const handleChange = (event) => {
-//             setSelectedCohort(event.target.value);
-//         };
-//
-//         return (
-//             <div className={styles.addMember}>
-//                 <h1>React Modal Example</h1>
-//                 <button onClick={openModal}>Open Modal</button>
-//
-//                 <Modal show={showModal} onClose={closeModal}>
-//
-//                     <p>Add Natives To Cohort</p>
-//
-//                     <div className={styles.inModal}>
-//                         {errorData && <p className={styles.error}>{errorData}</p>}
-//                         <select
-//                             value={selectedCohort}
-//                             onChange={handleChange}
-//                             className={styles.selectTag}
-//                         >
-//                             <option value="" disabled>Select a cohort</option>
-//
-//                             {cohorts.map((cohort, index) => (
-//                                 <option key={index} value={cohort.id}>{cohort.name}</option>
-//                             ))}
-//
-//                         </select>
-//
-//                         <form onSubmit={handleSubmitAllForms}>
-//                             {forms.map((form, index) => (
-//                                 <div key={index} className={styles.formItems}>
-//                                     <input
-//                                         type="text"
-//                                         name="name"
-//                                         placeholder="Enter the native's name"
-//                                         value={form.name}
-//                                         onChange={(e) => handleFormChange(index, e)}
-//                                         className={styles.inputTag}
-//                                     />
-//                                     <input
-//                                         type="email"
-//                                         name="email"
-//                                         placeholder="Enter the native's email"
-//                                         value={form.email}
-//                                         onChange={(e) => handleFormChange(index, e)}
-//                                         className={styles.inputTag}
-//                                     />
-//                                 </div>
-//                             ))}
-//                             <button type="button" onClick={addForm} className={styles.theButton}>+</button>
-//                             <button type="submit" className={styles.theButton}>Done</button>
-//                         </form>
-//
-//                     </div>
-//
-//
-//                 </Modal>
-//             </div>
-//
-//         )
-//
-//
-//     }
-// }
-// export default AddMember;
-
-
-
 import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import styles from "./index.module.css";
@@ -217,18 +34,15 @@ const AddMember = () => {
             return;
         }
 
-
-        const dataToSubmit = forms.map(form => ({
-            fullName: form.name,
-            email: form.email,
-        }));
+        const dataToSubmit = new Map();
+        forms.forEach((form) => {
+            dataToSubmit.set(form.email, form.name)
+        })
 
         const payload = {
             members: dataToSubmit,
             cohortNumber: selectedCohort,
         }
-        console.log(dataToSubmit)
-        console.log(payload)
 
         try {
             const response = await fetch(BACKEND_COMMUNITY_MANAGER_ADD_MEMBER, {
@@ -243,7 +57,7 @@ const AddMember = () => {
                 console.log(response)
                 setAddMemberError("");
                 setForms([{ name: '', email: '' }]);
-                setSelectedCohort('');
+                setSelectedCohort(cohorts[0].cohortNumber);
             } else {
                 setAddMemberError(data.err || "Failed to add members");
             }
@@ -265,7 +79,7 @@ const AddMember = () => {
                     setCohorts(data.data);
                     console.log(cohorts);
                 } else {
-                    const errorMessage = await response();
+                    const errorMessage = await response.data.message;
                     setErrorData(JSON.stringify(errorMessage));
                     setCohorts([]);
                 }
@@ -275,7 +89,7 @@ const AddMember = () => {
             }
         };
 
-        handleGetAllCohorts();
+        handleGetAllCohorts().then();
     }, []);
 
     const openModal = () => setShowModal(true);
@@ -286,6 +100,7 @@ const AddMember = () => {
     }
 
     const handleChange = (event) => {
+        console.log(event.target.value);
         setSelectedCohort(event.target.value);
     };
     console.log(cohorts)

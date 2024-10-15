@@ -26,7 +26,7 @@ const AddCohort = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             const response = await axios.post(BACKEND_COHORT_BASE_URL + "/createCohort", {
                 cohortNumber: cohorts.cohortNumber,
@@ -123,7 +123,6 @@ const AddCohort = () => {
                             name={"cohortNumber"}
                             onChange={handleChange}
                             placeholder="Enter new cohort number"
-
                         />
                         <input
                             type="text"
