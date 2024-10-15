@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./index.module.css"
-import { BACKEND_COMMENT_BASE_URL, BACKEND_POST_BASE_URL } from "../../ApiUtils";
-import { FcLike } from "react-icons/fc";
-import { FcDislike } from "react-icons/fc";
-import {jwtDecode} from "jwt-decode"
-import { FaRegUserCircle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { BACKEND_POST_BASE_URL } from "../../ApiUtils";
 
 const ViewAllPost = () => {
     const navigate = useNavigate();
@@ -34,11 +27,10 @@ const ViewAllPost = () => {
 
         const handleGetAllPost = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/post/all_post");
-
-                console.log(response)
+                const response = await axios.get(BACKEND_POST_BASE_URL+ "/all_post");
+                // console.log(response)
                 if (response.status === 200) {
-                    const data = await response.data
+                    const data = await response.data;
                     console.log(data)
                     setPosts(data);
                     setServerError("");
