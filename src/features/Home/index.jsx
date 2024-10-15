@@ -43,7 +43,7 @@ const Home = () => {
     }
 
     function changeBackgroundOnOver(e) {
-        e.target.style.backgroundColor = "#007bff"
+        e.target.style.backgroundColor = "#007bff";
     }
 
 
