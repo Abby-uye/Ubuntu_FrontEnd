@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./index.module.css"
+import { BACKEND_POST_BASE_URL } from "../../ApiUtils";
 
 const ViewAllPost = () => {
     const [posts, setPosts] = useState([]);
@@ -9,10 +10,10 @@ const ViewAllPost = () => {
     useEffect(() => {
         const handleGetAllPost = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/post/all_post");
+                const response = await axios.get(BACKEND_POST_BASE_URL+ "/all_post");
                 // console.log(response)
                 if (response.status === 200) {
-                    const data = await response.data.posts
+                    const data = await response.data;
                     console.log(data)
                     setPosts(data);
                     setServerError("");

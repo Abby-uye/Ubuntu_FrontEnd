@@ -3,8 +3,6 @@ import style from "./index.module.css"
 import ChatHistory from "../ChatHistory";
 import ChatInput from "../ChatInput";
 import RecentlyChattedUser from "../RecentlyChattedUser";
-// import CohortState from "../CohortState";
-// import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
 import AllCohorts from "../AllCohorts";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

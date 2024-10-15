@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import logo from "../../assets/Ubuntu-Logo.png"
+import { BACKEND_AUTH_URL } from "../../ApiUtils";
 // import * as Yup from "yup";
 
 
@@ -40,7 +41,7 @@ const Login = () => {
         }
         try {
             
-            const response = await axios.post('http://localhost:8080/ubuntu/user/auth', {
+            const response = await axios.post(BACKEND_AUTH_URL, {
                 email: user.email,
                 password: user.password
             })

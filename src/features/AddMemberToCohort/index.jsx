@@ -185,6 +185,7 @@ import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import styles from "./index.module.css";
 import axios from "axios";
+import { BACKEND_COHORT_BASE_URL, BACKEND_COMMUNITY_MANAGER_ADD_MEMBER } from "../../ApiUtils";
 
 const AddMember = () => {
      const [cohorts, setCohorts] = useState([]);
@@ -230,7 +231,7 @@ const AddMember = () => {
         console.log(payload)
 
         try {
-            const response = await fetch("http://localhost:8080/api/v1/community_manager/add_student", {
+            const response = await fetch(BACKEND_COMMUNITY_MANAGER_ADD_MEMBER, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -255,13 +256,13 @@ const AddMember = () => {
     useEffect(() => {
         const handleGetAllCohorts = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/cohort/findAllCohort");
+                const response = await axios.get(BACKEND_COHORT_BASE_URL+ "/findAllCohort");
 
                 console.log(response);
                 if (response.request.status === 200) {
                     const data = await response.data;
                     setErrorData("");
-                    setCohorts(data);
+                    setCohorts(data.data);
                     console.log(cohorts);
                 } else {
                     const errorMessage = await response();

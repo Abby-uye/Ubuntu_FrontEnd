@@ -1,8 +1,10 @@
 export const SOCKET_BASE_URL = "http://localhost:8081"
-export const BACKEND_MESSAGE_BASE_URL = "http://localhost:8080/ubuntu/chatMessage"
-export const BACKEND_USER_BASE_URL = "http://localhost:8080/ubuntu/user";
-export const BACKEND_COHORT_BASE_URL = "http://localhost:8080/ubuntu/cohort";
-export const BACKEND_POST_BASE_URL = "http://localhost:8080/ubuntu/post/create_post";
-export const BACKEND_BASE_URL = "http://localhost:8080";
-export const BACKEND_CHATROOM_BASE_URL = "http://localhost:8080/ubuntu/chatroom";
+export const BACKEND_MESSAGE_BASE_URL = "http://localhost:8099/ubuntu/chatMessage"
+export const BACKEND_USER_BASE_URL = "http://localhost:8099/ubuntu/user";
+export const BACKEND_COHORT_BASE_URL = "http://localhost:8099/ubuntu/cohort";
+export const BACKEND_POST_BASE_URL = "http://localhost:8099/ubuntu/post";
+export const BACKEND_BASE_URL = "http://localhost:8099";
+export const BACKEND_CHATROOM_BASE_URL = "http://localhost:8099/ubuntu/chatroom";
+export const BACKEND_AUTH_URL = "http://localhost:8099/ubuntu/user/auth";
+export const BACKEND_COMMUNITY_MANAGER_ADD_MEMBER = "http://localhost:8099/api/v1/community_manager/add_student";
 // module.exports = {BACKEND_BASE_URL, BACKEND_POST_BASE_URL, BACKEND_COHORT_BASE_URL, BACKEND_USER_BASE_URL, BACKEND_MESSAGE_BASE_URL};

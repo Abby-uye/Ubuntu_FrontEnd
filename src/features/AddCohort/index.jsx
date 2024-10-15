@@ -5,6 +5,7 @@ import {useState} from 'react';
 import axios from "axios";
 import {toast} from "react-toastify";
 import Modal from "../CohortModal"
+import { BACKEND_COHORT_BASE_URL } from "../../ApiUtils";
 
 
 const AddCohort = () => {
@@ -27,7 +28,7 @@ const AddCohort = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:8080/ubuntu/cohort/createCohort', {
+            const response = await axios.post(BACKEND_COHORT_BASE_URL + "/createCohort", {
                 cohortNumber: cohorts.cohortNumber,
                 cohortName: cohorts.cohortName
             })
@@ -62,15 +63,14 @@ const AddCohort = () => {
     useEffect(() => {
         const handleGetAllCohorts = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/cohort/findAllCohort");
-                console.log("i got here1")
+                const response = await axios.get(BACKEND_COHORT_BASE_URL+ "/findAllCohort");
                 console.log(response);
                 if (response.request.status === 200) {
-                    console.log("i got here2")
+                    console.log("i got here2");
 
                     const data = await response.data;
-                    console.log("data" + data)
-                    setCohorts(data)
+                    console.log("data" + data);
+                    setCohorts(data.data);
                     console.log(cohorts);
                 } else {
                     const errorMessage = await response();
@@ -120,14 +120,14 @@ const AddCohort = () => {
                     <form onSubmit={handleSubmit} className={style.formInfo}>
                         <input
                             type="number"
-                            name={"cohortName"}
+                            name={"cohortNumber"}
                             onChange={handleChange}
                             placeholder="Enter new cohort number"
 
                         />
                         <input
                             type="text"
-                            name={"cohortNumber"}
+                            name={"cohortName"}
                             onChange={handleChange}
                             placeholder="Enter new cohort name"
                         />
