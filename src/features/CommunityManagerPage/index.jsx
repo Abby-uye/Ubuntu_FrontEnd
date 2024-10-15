@@ -5,18 +5,23 @@ import removeStudent from "../../assets/communityManger/removeAStudentIcon-remov
 import addEvent from "../../assets/communityManger/addEventIcon-removebg-preview.png"
 import updateEvent from "../../assets/communityManger/updateImageIcon-removebg-preview.png"
 import deleteEvent from "../../assets/communityManger/deleteEventIcon-removebg-preview.png"
-import event from "../../assets/communityManger/event.png"
 import AddMemberToCohort from "../AddMemberToCohort";
 import AddCohort from "../AddCohort";
 import AddMember from "../AddMemberToCohort";
 import {MdOutlinePostAdd} from "react-icons/md";
-import React from "react";
+import React, {useState} from "react";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import ViewAllPost from "../ViewAllPost";
 import AddEvent from "../AddEvent";
 import AllEvent from "../AllEvents";
-
+import RemoveStudent     from "../RemoveStudent";
 const CommunityManagerPage = () => {
+    const [showRemoveStudent, setShowRemoveStudent] = useState(false);
+
+    const handleRemoveStudent = () => {
+        setShowRemoveStudent(true);
+    };
+
     function changeBackgroundOnOver(e) {
         e.target.style.backgroundColor = "#007bff"
     }
@@ -48,7 +53,7 @@ const CommunityManagerPage = () => {
 
                     <div className={style.removeStudent}>
                         <img src={removeStudent} alt={"removeStudent"} className={style.removeStudentImage}/>
-                        <button className={style.communtityButton}>Remove Student</button>
+                        <RemoveStudent/>
 
                     </div>
 

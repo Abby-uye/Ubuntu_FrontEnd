@@ -52,19 +52,19 @@ const PostModal = ({closeModal, openFlow}) => {
             form_data.append("body", postRequest.body);
             form_data.append("image", file);
             form_data.append("userId", userId);
-            try{
-                var response = await axios.post(BACKEND_POST_BASE_URL+"/create_post", form_data);
-                if (response.status === 201){
-                    alert("Post created successfully with id of "+ response.data.id)
-                }else {
-                    alert(response.data.message);
-                }
-            }catch(error){
-                console.log(error);
-            }
-            setPostRequest({})
-            setFile("");
+        try{
+            var response = await axios.post(BACKEND_POST_BASE_URL + "/create_post", form_data);
+        if (response.status === 201){
+                alert("Post created successfully with id of "+ response.data.id)
+        }else {
+                alert(response.data.message);
         }
+        }catch(error){
+            console.log(error);
+        }
+        setPostRequest({})
+        setFile("");
+    }
 
         function handleIconClick(){
             fileRef.current.click();
