@@ -1,4 +1,4 @@
-import { BACKEND_MESSAGE_BASE_URL } from "../../ApiUtils";
+import { BACKEND_MESSAGE_BASE_URL, FORMATDATE } from "../../ApiUtils";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./index.module.css";
@@ -53,7 +53,7 @@ return (
                 <strong>{msg.sendId}:</strong> {msg.message}
 
                 <div className={styles.timestamp}>
-                    {new Date().toLocaleTimeString()}
+                    {msg.dateSent ? FORMATDATE(new Date(msg.dateSent)) : FORMATDATE(new Date())}
                 </div>
             </div>
             ))}

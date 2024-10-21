@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import styles from "./index.module.css";
 import axios from "axios";
-import { BACKEND_COHORT_BASE_URL, BACKEND_COMMUNITY_MANAGER_ADD_MEMBER } from "../../ApiUtils";
+import { BACKEND_COHORT_BASE_URL, BACKEND_COMMUNITY_MANAGER_BASE_URL } from "../../ApiUtils";
 
 const AddMember = () => {
      const [cohorts, setCohorts] = useState([]);
@@ -39,21 +39,18 @@ const AddMember = () => {
             dataToSubmit.set(form.email, form.name)
         })
 
+        const membersObject = Object.fromEntries(dataToSubmit);
+
         const payload = {
-            members: dataToSubmit,
+            members: membersObject,
             cohortNumber: selectedCohort,
         }
 
+
         try {
-            const response = await fetch(BACKEND_COMMUNITY_MANAGER_ADD_MEMBER, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-            const data = await response.json();
-            if (response.ok) {
+            const response = await axios.post(BACKEND_COMMUNITY_MANAGER_BASE_URL+ "/add_student", payload);
+            const data = response.data;
+            if (response.status === 202) {
                 console.log(response)
                 setAddMemberError("");
                 setForms([{ name: '', email: '' }]);
@@ -76,7 +73,7 @@ const AddMember = () => {
                 if (response.request.status === 200) {
                     const data = await response.data;
                     setErrorData("");
-                    setCohorts(data.data);
+                    setCohorts(data.body);
                     console.log(cohorts);
                 } else {
                     const errorMessage = await response.data.message;

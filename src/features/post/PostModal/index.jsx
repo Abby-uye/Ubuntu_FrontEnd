@@ -11,6 +11,7 @@ import {BACKEND_POST_BASE_URL} from "../../../ApiUtils";
 
 const PostModal = ({closeModal, openFlow}) => {
     const token = localStorage.getItem("token");
+    const [reloadState, setReloadState] = useState(false);
     const navigate = useNavigate();
     
     const fileRef = useRef(null);
@@ -33,12 +34,14 @@ const PostModal = ({closeModal, openFlow}) => {
     
     useEffect(() => {
         
-        if(token === null){
+        if(token === null || token === "undefined"){
             navigate("/login");
         }
 
         try {
+            console.log("This is the token ", token)
             const decoded = jwtDecode(token);
+            console.log("Decoded is ", decoded)
             setUserId(decoded.sender_email);
         } catch (error) {
             console.error('Invalid token:', error);
@@ -55,7 +58,8 @@ const PostModal = ({closeModal, openFlow}) => {
         try{
             var response = await axios.post(BACKEND_POST_BASE_URL + "/create_post", form_data);
         if (response.status === 201){
-                alert("Post created successfully with id of "+ response.data.id)
+                alert("Post created successfully")
+                window.location.reload();
         }else {
                 alert(response.data.message);
         }
@@ -64,6 +68,7 @@ const PostModal = ({closeModal, openFlow}) => {
         }
         setPostRequest({})
         setFile("");
+        
     }
 
         function handleIconClick(){

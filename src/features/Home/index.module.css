@@ -34,38 +34,26 @@
     flex-direction: column;
     gap: 30px;
 }
-.notification{
-    height: 50px;
-}
+
 .heading{
-  display: flex;
+    display: flex;
     background-color: #FF2E2E;
     justify-content: space-between;
+    align-items: center;
     border-radius: 5px;
-
-    /*display: flex;*/
-    /*background-color: #a6e1ec;*/
-
-
 }
+
 .searchMain{
     display: flex;
     background-color: #a6e1ec;
-    justify-content: left;
+    justify-content: right;
     align-items: center;
-    width: 50%;
+    margin-top: -5px;
     gap: 10px;
 }
-/*.searchMain{*/
-/*    display: flex;*/
-/*    background-color: whitesmoke;*/
-/*    justify-content: left;*/
-/*    align-items: center;*/
-/*    width: 50%;*/
-/*    gap: 10px;*/
-/*}*/
+
 .search{
-    height: 7vh;
+    height: 6vh;
     border-radius: 4px;
     background-color: whitesmoke;
     border: 1px solid #FF2E2E;
@@ -77,6 +65,7 @@
     width: 300px;
 
 }
+
 .chatLink{
     outline: none;
     text-decoration: none;
@@ -84,6 +73,7 @@
     font-weight: 900;
     color: #671BC7;
 }
+
 .dummyImage{
     width: 40px;
     height: 5vh;
@@ -126,26 +116,24 @@ style.viewAllPost{
 }
 .ubuntu{
     font-weight: bolder;
-   color: white;
+    color: black;
+    margin-left: 20px;
     font-family: "MS Outlook";
-    font-size: 20px;
-
-
+    font-size: 25px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.faSearch{
-    z-index: 3;
-    top: 20px;
-    position: relative;
-    left: 270px;
-
-}
 .profile{
     display: flex;
     flex-direction: row;
+    gap: 10px;
+    margin-right: 20px;
     margin-top: 5px;
 }
+
 .profileP{
     font-weight: bold;
     font-family: lato, serif;
+    color: black;
 }

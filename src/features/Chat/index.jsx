@@ -91,7 +91,7 @@ const Chat = ({socket})=> {
     return(
         <div className={style.mainCont}>
         <div className={style.users}>
-            <AllCohorts/>
+            <AllCohorts selectedUser={setSelectedUser} userEmail={userEmail}/>
             <RecentlyChattedUser selectedUser={setSelectedUser}/>
         </div>
         {openTextArea && 

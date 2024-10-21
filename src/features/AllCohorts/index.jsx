@@ -4,7 +4,7 @@ import {faBars, faTimes} from "@fortawesome/free-solid-svg-icons";
 import style from "./index.module.css"
 import DisplayCohortAndMembers from "../DisplayCohortAndMembers";
 import Cohort from "../Cohort";
-const AllCohorts = ()=>{
+const AllCohorts = ({selectedUser, userEmail})=>{
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -31,7 +31,7 @@ const AllCohorts = ()=>{
         }
 
         <div className={`${style.menu} ${isOpen ? style.active : ''}`}>
-            <DisplayCohortAndMembers/>
+            <DisplayCohortAndMembers setSelectedUser={selectedUser} userEmail={userEmail}/>
         </div>
     </div>
 )
