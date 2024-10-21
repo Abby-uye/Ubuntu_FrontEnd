@@ -20,7 +20,7 @@ const ChatInput = ({onSend})=>{
                 className={styles.input}
                 placeholder="Type a message..."
             />
-.            <button className={styles.buttn} onClick={() => onSend(message)}>
+.            <button className={styles.buttn} onClick={(event) => onSend(message)}>
                 <FontAwesomeIcon icon={faPaperPlane}/>
             </button>
         </div>

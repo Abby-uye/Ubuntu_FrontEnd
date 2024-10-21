@@ -4,6 +4,7 @@ import style from "./index.module.css";
 
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import { BACKEND_QUESTION_BASE_URL } from "../../../ApiUtils";
 // import './AllQuestions.css';
 
 
@@ -17,10 +18,10 @@ const AllQuestions = () => {
     useEffect(() => {
         const handleGetAllQuestions = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/question/getQuestion");
+                const response = await axios.get(BACKEND_QUESTION_BASE_URL+ "/getQuestion");
                 if (response.status === 200) {
                     const data = response.data;
-                    setQuestions(data);
+                    setQuestions(data.body);
                 }
             } catch (error) {
                 console.log(error);
@@ -45,6 +46,7 @@ const AllQuestions = () => {
         }
         return text;
     };
+
     const handleAddQuestion = () => {
         setQuestions([...questions, { title: 'New Question', body: newQuestion }]);
         setNewQuestion('');
@@ -92,50 +94,3 @@ const AllQuestions = () => {
 };
 
 export default AllQuestions;
-
-
-// const AllQuestions =()=>{
-//
-//     const [questions ,setQuestions] = useState([])
-//     useEffect(() => {
-//         const handleGetAllQuestions = async () => {
-//             try {
-//                 const response = await axios.get("http://localhost:8080/ubuntu/question/getQuestion");
-//                 console.log(response)
-//                 if (response.status === 200) {
-//                     const data = await response.data
-//                     setQuestions(data);
-//                 }
-//             } catch (error) {
-//                 console.log(error)
-//                 console.log("temporarily unavailable");
-//             }
-//         };
-//
-//         handleGetAllQuestions()
-//     }, []);
-//
-//
-//     return(
-//         <div>
-//             {questions.length > 0 ? (
-//                 questions.map((question, index) => (
-//                     <div key={index}>
-//                         <h2>{question.title}</h2>
-//                         <p>{question.body}</p>
-//                         <div className={styles.Comment}>
-//                             <button className={styles.theButton}>Reply</button>
-//                         </div>
-//                     </div>
-//                 ))
-//             ) : (
-//                 <p>No Question Available</p>
-//             )}
-//
-//         </div>
-//     )
-// }
-//
-// export default AllQuestions
-//
-//

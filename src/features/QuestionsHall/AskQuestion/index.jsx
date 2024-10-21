@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 import Modal from "../../AskQuestionModal"
+import { BACKEND_QUESTION_BASE_URL } from "../../../ApiUtils";
 
 const AskQuestion = () => {
     const userDetailEncoded = localStorage.getItem("token")
@@ -32,7 +33,7 @@ const AskQuestion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:8080/ubuntu/question/postQuestion", {
+            const response = await axios.post(BACKEND_QUESTION_BASE_URL+ "/postQuestion", {
                 title: question.title,
                 body: question.body,
                 userId: userId,

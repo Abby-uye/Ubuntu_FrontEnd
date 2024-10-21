@@ -15,7 +15,8 @@ import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import ViewAllPost from "../ViewAllPost";
 import AddEvent from "../AddEvent";
 import AllEvent from "../AllEvents";
-import RemoveStudent     from "../RemoveStudent";
+import RemoveStudent   from "../RemoveStudent";
+
 const CommunityManagerPage = () => {
     const [showRemoveStudent, setShowRemoveStudent] = useState(false);
 
@@ -23,9 +24,9 @@ const CommunityManagerPage = () => {
         setShowRemoveStudent(true);
     };
 
-    function changeBackgroundOnOver(e) {
-        e.target.style.backgroundColor = "#007bff"
-    }
+    // function changeBackgroundOnOver(e) {
+    //     e.target.style.backgroundColor = "#007bff"
+    // }
 
 
     return (

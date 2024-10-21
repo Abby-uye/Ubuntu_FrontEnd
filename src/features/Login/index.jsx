@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import logo from "../../assets/Ubuntu-Logo.png"
+import { BACKEND_USER_BASE_URL } from "../../ApiUtils";
 // import * as Yup from "yup";
 
 
@@ -34,19 +35,20 @@ const Login = () => {
     const handleSubmit = async (e) => {
         console.log("email " + user.email)
         console.log("password " + user.password)
-        e.preventDefault()
+        e.preventDefault();
         if(user.email === "community@manager.com" && user.password === "password1234"){
             navigate("/communityManagerPage")
         }
         try {
             
-            const response = await axios.post('http://localhost:8080/ubuntu/user/auth', {
+            const response = await axios.post(BACKEND_USER_BASE_URL+ '/auth', {
                 email: user.email,
                 password: user.password
-            })
-            if (response.request.status === 200) {
-                localStorage.setItem("token", response.data.token)
-                console.log(response.data.token)
+            });
+            console.log("Response in login is this ", response.status)
+            if (response.status === 200) {
+                const payload = response.data;
+                localStorage.setItem("token", payload.body.token)
                 navigate("/home")
             }
 

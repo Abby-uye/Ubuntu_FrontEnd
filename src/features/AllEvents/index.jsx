@@ -2,15 +2,14 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import style from "./index.module.css"
 import Modal from "../AddEventModal"
+import { BACKEND_EVENT_BASE_URL, FORMATDATE } from "../../ApiUtils";
 
 const AllEvent = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [events, setEvents] = useState([{
         title: "",
         description: "",
         eventDate: ""
     }]);
-    const [file, setFile] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => {
@@ -22,13 +21,11 @@ const AllEvent = () => {
     useEffect(() => {
         const handleGetAllEvents = async () => {
             try {
-                const response = await axios.post("http://localhost:8080/ubuntu/chatroom/getAllEvents");
+                const response = await axios.get(BACKEND_EVENT_BASE_URL+ "/findAllEvent");
                 console.log(response);
                 if (response.status === 200) {
                     const data = await response.data;
-                    console.log("data" + data)
-                    setEvents(data)
-                    // setFile(response.data.eventImage)
+                    setEvents(data.body)
                     console.log(response.data);
                 } else {
                     const errorMessage = response.data.message;
@@ -41,6 +38,13 @@ const AllEvent = () => {
         };
         handleGetAllEvents().then();
     }, []);
+
+    const convertToJpgUrl = (imageUrl) => {
+        if (imageUrl.endsWith('.heic')) {
+          return imageUrl.replace(/\.heic$/, '.jpg').replace(/\/upload\//, '/upload/f_jpg/');
+        }
+        return imageUrl;
+    };
 
     return (
         <div className={style.bodyMain}>
@@ -57,10 +61,9 @@ const AllEvent = () => {
 
                                 <div key={index} className={style.eventDetails}>
                                     <h3>{newEvent.title}</h3>
-                                    <h4>{newEvent.eventDate}</h4>
+                                    <h4>{FORMATDATE(new Date(newEvent.eventDate))}</h4>
                                     <p>{newEvent.description}</p>
-                                    {newEvent.eventImage && <img src={newEvent.eventImage} alt="event"/>}
-                                    <img src={newEvent.eventImage} alt="event"/>
+                                    {newEvent.eventImage && <img src={convertToJpgUrl(newEvent.eventImage)} alt="event"/>}
                                 </div>
                             ))}
                         </div>

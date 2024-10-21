@@ -4,7 +4,7 @@ import UserProfile from '../CreateProfile'
 import axios from "axios";
 const {BACKEND_COHORT_BASE_URL, BACKEND_USER_BASE_URL} = require("../../ApiUtils")
 
-const DisplayCohortAndMembers =()=>{
+const DisplayCohortAndMembers =({setSelectedUser, userEmail})=>{
 
     const [cohorts, setCohorts] = useState({});
     const [students, setStudent] = useState([]);
@@ -33,8 +33,8 @@ const DisplayCohortAndMembers =()=>{
                 const response = await axios.get(BACKEND_COHORT_BASE_URL+"/findAllCohort");
                 if (response.request.status === 200){
                     console.log(response.data);
-                    var cohort = await response.data;
-                    setCohorts(cohort);
+                    var cohort = response.data;
+                    setCohorts(cohort.body);
                 }else {
                     console.log(response);
                     setCohorts([]);
@@ -58,13 +58,13 @@ const DisplayCohortAndMembers =()=>{
         }
     };
 
-    const handleMemberClick = (cohort, member) => {
-        setSelectedUserProfile(member);
+    const handleMemberClick = (cohort, student) => {
+        if(student.accountState === "ACTIVATED" && student.email != userEmail) setSelectedUser(student.email)
     };
 
     return (
         <div className={styles.cohortState}>
-            {Object.keys(cohorts).map(cohort => (
+            {cohorts && Object.keys(cohorts).map(cohort => (
                 <div key={cohort} className={styles.cohortList}>
                     <p onClick={() => handleToggleVisibility(cohort)} className={styles.cohortName}>
                         {cohorts[cohort].cohortName}
@@ -75,7 +75,7 @@ const DisplayCohortAndMembers =()=>{
                                      <p key={index}
                                      style={{ color: student.accountState === "ACTIVATED" ? "inherit" : "red" }}
                                      className={styles.memberItem}
-                                     onClick={() => handleMemberClick(cohorts[cohort].cohortName, student.email)}
+                                     onClick={() => handleMemberClick(cohorts[cohort].cohortName, student)}
                                   >{student.email}</p>
                                 ))}
                         </div>

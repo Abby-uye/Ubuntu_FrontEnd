@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import styles from "./index.module.css";
 import axios from "axios";
+import { BACKEND_COHORT_BASE_URL, BACKEND_COMMUNITY_MANAGER_BASE_URL } from "../../ApiUtils";
 
 const AddMember = () => {
      const [cohorts, setCohorts] = useState([]);
@@ -38,15 +39,17 @@ const AddMember = () => {
             dataToSubmit.set(form.email, form.name)
         })
 
+        const membersObject = Object.fromEntries(dataToSubmit);
+
         const payload = {
-            members: dataToSubmit,
+            members: membersObject,
             cohortNumber: selectedCohort,
         }
 
+
         try {
-            const response = await axios.post("http://localhost:8080/api/v1/community_manager/add_student", payload);
-            const data = await response;
-            console.log(data);
+            const response = await axios.post(BACKEND_COMMUNITY_MANAGER_BASE_URL+ "/add_student", payload);
+            const data = response.data;
             if (response.status === 202) {
                 console.log(response)
                 setAddMemberError("");
@@ -64,14 +67,14 @@ const AddMember = () => {
     useEffect(() => {
         const handleGetAllCohorts = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/cohort/findAllCohort");
+                const response = await axios.get(BACKEND_COHORT_BASE_URL+ "/findAllCohort");
+
                 console.log(response);
                 if (response.request.status === 200) {
                     const data = await response.data;
                     setErrorData("");
-                    setCohorts(data);
-                    let defaultCohort = cohorts[0].cohortNumber
-                    setSelectedCohort(defaultCohort)
+                    setCohorts(data.body);
+                    console.log(cohorts);
                 } else {
                     const errorMessage = await response.data.message;
                     setErrorData(JSON.stringify(errorMessage));

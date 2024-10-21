@@ -11,6 +11,13 @@ import QuestionsHall from "../features/QuestionsHall";
 import AskQuestion from "../features/QuestionsHall/AskQuestion";
 import AllQuestions from "../features/QuestionsHall/AllQuestions";
 import AllUserQuestions from "../features/QuestionsHall/AllUserQuestions";
+import { io } from 'socket.io-client';
+import { SOCKET_BASE_URL } from "../ApiUtils";
+
+const socket = io(SOCKET_BASE_URL);
+socket.on("connect", () => {
+    console.log("Connected User with ", socket)
+})
 
 export const Routes = [
     {
@@ -19,7 +26,7 @@ export const Routes = [
     },
     {
         path: "/chat",
-        element: <Chat/>,
+        element: <Chat socket={socket}/>,
     },
     {
         path: "/community_manager",
@@ -30,7 +37,7 @@ export const Routes = [
         element: <CommunityManagerPage/>
     }
     , {
-        path: "/login",
+        path: "",
         element: <Login/>
     }
 

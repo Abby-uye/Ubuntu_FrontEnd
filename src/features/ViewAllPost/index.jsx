@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./index.module.css"
-import { BACKEND_COMMENT_BASE_URL, BACKEND_POST_BASE_URL } from "../../ApiUtils";
+import { BACKEND_POST_BASE_URL, BACKEND_COMMENT_BASE_URL } from "../../ApiUtils";
+import { useNavigate } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import { FcDislike } from "react-icons/fc";
-import {jwtDecode} from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
 import { FaRegUserCircle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -34,15 +34,12 @@ const ViewAllPost = () => {
 
         const handleGetAllPost = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/ubuntu/post/all_post");
-
-                console.log(response)
+                const response = await axios.get(BACKEND_POST_BASE_URL+ "/all_post");
                 if (response.status === 200) {
-                    const data = await response.data
+                    const data = await response.data;
                     console.log(data)
                     setPosts(data);
                     setServerError("");
-                    // console.log(posts.length);
                 }
             } catch (error) {
                 setServerError("temporarily unavailable");
@@ -102,7 +99,7 @@ const ViewAllPost = () => {
                 if (response.status === 200){
                     let data = response.data;
                     setPostId(postId);
-                    setComments(data);
+                    setComments(data.body);
                 }
             }catch(error){
                 console.log(error);
@@ -118,7 +115,8 @@ const ViewAllPost = () => {
             const response = await axios.post(BACKEND_COMMENT_BASE_URL, payload)
             if (response.status === 201){
                 let data = response.data;
-                postComment(data.id);
+                let body = data.body;
+                postComment(body.id);
                 setComment("");
             }
         }catch(error){
@@ -130,7 +128,8 @@ const ViewAllPost = () => {
         try{
            const response = await axios.get(BACKEND_COMMENT_BASE_URL+`/${commentId}`)
            if(response.status === 200){
-            setComments((previousComment) => [...previousComment, response.data]);
+            const data = response.data;
+            setComments((previousComment) => [...previousComment, data.body]);
            }
         }catch(error){
             console.log(error);
