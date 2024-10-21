@@ -37,7 +37,7 @@ export const Routes = [
         element: <CommunityManagerPage/>
     }
     , {
-        path: "/login",
+        path: "",
         element: <Login/>
     }
 
