@@ -5,28 +5,35 @@ import {MdOutlinePostAdd} from "react-icons/md";
 import {IoIosChatboxes, IoIosNotifications} from "react-icons/io";
 import { useEffect, useState } from "react";
 import PostModal from "../post/PostModal";
-import dummyDp from "../../assets/profile-pic-dummy-300x300-removebg-preview.png"
+import profileImage from "../../assets/images/profile.svg"
 import {useNavigate} from "react-router-dom";
 import ViewAllPost from "../ViewAllPost";
 import logo from "../../assets/community.jpeg"
+import { jwtDecode } from 'jwt-decode';
 
 
 const Home = () => {
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
+    const [userMail, setUserMail] = useState();
 
     useEffect(() => {
-        console.log(localStorage.getItem("token"));
-        if(localStorage.getItem("token") === null){
+        const token = localStorage.getItem("token");
+        if(token === null){
             navigate("/login");
+        }else {
+            const decodedToken = jwtDecode(token);
+            console.log("Token is ", decodedToken);
+            setUserMail(decodedToken.recipient_email);
         }
     }, []);
 
 
+
+
     const openModalFunction = () => {
-        setOpenModal(true)
-        hidOverFlow()
-        console.log("hello");
+        setOpenModal(true);
+        hidOverFlow();
     };
 
     const hidOverFlow = () => {document.body.style.overflow = "hidden";}
@@ -44,7 +51,7 @@ const Home = () => {
     }
 
     function changeBackgroundOnOver(e) {
-        e.target.style.backgroundColor = "#007bff"
+        e.target.style.backgroundColor = "#007bff";
     }
 
 
@@ -52,18 +59,18 @@ const Home = () => {
         <div className={style.mainboard}>
             <div className={style.heading}>
                 <div className={style.ourLogo}>
-                    <img src={logo} alt={"Logo"} className={style.logo}/>
+                    {/* <img src={logo} alt={"Logo"} className={style.logo}/> */}
                     <p className={style.ubuntu}>Ubuntu</p>
                 </div>
                 <div className={style.searchMain}>
                     <input type={"search"} placeholder={"Search"} className={style.search}/>
-                    <FaSearch className={style.faSearch} style={{fill: "black", fontSize: "18px"}}/>
-
                 </div>
-                <IoIosNotifications style={{fill: "black", fontSize: "40px"}} className={style.notification}/>
+                <div>
+                    <IoIosNotifications style={{fill: "black", fontSize: "40px"}}/>
+                </div>
                 <div className={style.profile}>
-                    <p className={style.profileP}>Profile</p>
-                <img src={dummyDp} className={style.dummyImage} alt={"dp"}/>
+                    <p className={style.profileP}>{userMail}</p>
+                    <img src={profileImage} className={style.dummyImage} alt={"dp"}/>
                 </div>
             </div>
 

@@ -11,13 +11,12 @@ import { BACKEND_CHATROOM_BASE_URL } from "../../ApiUtils";
 import { jwtDecode } from "jwt-decode";
 
 
-const Chat = ()=> {
+const Chat = ({socket})=> {
     const navigate = useNavigate();
-    const [messages,setMessages] = useState([]);
+    const [message,setMessage] = useState([]);
     const [selectedUser, setSelectedUser] = useState("");
     const [openTextArea, setOpenTextArea] = useState(false);
     const [userEmail, setUserEmail] = useState();
-    const [sendData, setSendData] = useState(null);
     var email = "";
 
     
@@ -28,6 +27,9 @@ const Chat = ()=> {
         const decodedObject = jwtDecode(localStorage.getItem("token"));
         email = decodedObject.recipient_email;
         setUserEmail(email);
+        if(socket){
+        socket.emit("register", email);
+        }
     }, []);
 
     useEffect(() => {
@@ -37,15 +39,11 @@ const Chat = ()=> {
                 recipient_email: selectedUser,
                 sender_email: userEmail
             };
-
             
             try{
                 const response =  await axios.post(BACKEND_CHATROOM_BASE_URL+"/initialize", payLoad);
 
-                console.log(response);
-
                 if (response.status === 200){
-                    console.log(response);
                     if(response.data.activated){
                         setOpenTextArea(true);
                     }else {
@@ -66,7 +64,6 @@ const Chat = ()=> {
                 console.log(error);
             }
     }
-    console.log(selectedUser);
     if(selectedUser !== "") initializeReuqest();      
     }, [selectedUser]);
 
@@ -74,31 +71,32 @@ const Chat = ()=> {
 
     const handleSendMessage = (message) => {
         if(message !== ""){
-            sendData({
-                content : message
-            })
+            if(socket) {
+                console.log("Handle Send Message ", socket)
+                socket.emit("send_message", {
+                    sendId: userEmail, 
+                    recipientId: selectedUser,
+                    content: message
+                });
+            }
+            const obj = {
+                message: message,
+                sendId: userEmail,
+                recipientId: selectedUser
+            }
+            setMessage(obj);
         }
-        addMessageToList({
-            content: message,
-            username: email
-        })
     };
-
-    const addMessageToList = (val) => {
-        if (val.room == "") return;
-        setMessages([...messages, val]);
-      };
 
     return(
         <div className={style.mainCont}>
-
         <div className={style.users}>
-            <AllCohorts/>
+            <AllCohorts selectedUser={setSelectedUser} userEmail={userEmail}/>
             <RecentlyChattedUser selectedUser={setSelectedUser}/>
         </div>
         {openTextArea && 
         <div className={style.messageCont}>
-            {/* <ChatHistory selectedUser={selectedUser} sendData={setSendData} username={userEmail}/>  */}
+            <ChatHistory selectedUser={selectedUser} socket={socket} username={userEmail} message={message}/>
             <ChatInput onSend={handleSendMessage}/>
             </div>}
             <ToastContainer/>

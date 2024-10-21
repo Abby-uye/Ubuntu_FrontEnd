@@ -5,6 +5,7 @@ import {CiImageOn} from 'react-icons/ci';
 import FilledButton from "../../components/reuseables/FilledButton";
 import Modal from "../AddEventModal"
 import style from './index.module.css';
+import { BACKEND_EVENT_BASE_URL } from '../../ApiUtils';
 import { format } from 'date-fns';
 
 const AddEvent = () => {
@@ -64,7 +65,7 @@ const AddEvent = () => {
 
             console.log(formData)
 
-            const response = await axios.post('http://localhost:8080/ubuntu/chatroom/createEvent', formData);
+            const response = await axios.post(BACKEND_EVENT_BASE_URL+ '/createEvent', formData);
 
             if (response.status === 200) {
                 console.log(response)
